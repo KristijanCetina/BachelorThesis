@@ -1,0 +1,106 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[croatian]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage {tikz}
+\usepackage{pgfplots}
+\usetikzlibrary {positioning}
+\usepackage{tocloft}
+\usepackage[hidelinks]{hyperref}
+\usepackage[section]{placeins}
+\usepackage[final]{pdfpages}
+\bibliographystyle{abbrv}%ieeetr, abbrv
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\addto{\captionscroatian}{\renewcommand{\bibname}{Literatura}}
+
+\usepackage[blocks]{authblk}% The option is for block layout
+
+\newcommand{\kolegij}{}
+\newcommand{\naslovRada}{Arduino datalogger \\ {\large Završni rad}} 
+\newcommand{\mailFriendlynaslovRada}{BachelorThesis}
+
+\author{
+Kristijan Cetina \\{\small JMBAG: 2424011721} \\ {\href{mailto:kcetina@politehnika-pula.hr?subject=\mailFriendlynaslovRada}{{\footnotesize kcetina@politehnika-pula.hr}}}} 
+%\author[1]{Kristijan Cetina}
+
+%\affil[1]{\href{mailto:kcetina@politehnika-pula.hr?subject=\mailFriendlynaslovRada}{kcetina@politehnika-pula.hr} JMBAG: 2424011721}
+
+%\title{\kolegij \\ \naslovRada}
+\title{\naslovRada}
+\date{Pula, \today}
+
+\begin{document}
+\pgfplotsset{width=\textwidth,compat=newest}
+
+\begin{titlepage}
+\clearpage
+\begin{center}
+\begin{Huge}
+POLITEHNIKA PULA\\
+\end{Huge}
+\begin{LARGE}
+Visoka tehničko-poslovna škola s p.j.\\
+Stručni studij politehnike\\
+\end{LARGE}
+\end{center}
+\vspace{3cm}
+{\let\newpage\relax\maketitle}
+\thispagestyle{empty}
+\vfill
+
+\end{titlepage}
+\newpage
+\vspace*{\fill}
+\begin{flushright}
+\textit{Posveta}
+\end{flushright}
+\vspace*{\fill}
+\newpage
+\section*{Zahvala}
+Zahvala svima koji zaslužuju
+\newpage
+\section*{Izjava o samostalnosti izrade završnog rada}
+Izjavljujem da sam završni rad na temu „Arduino datalogger“ samostalno izradio uz pomoć mentorice Sanje Grbac Babić mag. računarstva, koristeći navedenu stručnu literaturu i znanje stečeno tijekom studiranja. Završni rad je pisan u duhu hrvatskog jezika.
+\vspace{3cm}
+\begin{flushright}
+Student: Kristijan Cetina\\
+\vspace{15mm}
+--------------------------------------------------------------
+\end{flushright}
+\newpage
+\begin{abstract}
+
+U ovom radu predstavljam
+
+\vspace{3cm}
+
+\begin{tabbing}
+\hspace{50pt}\=\kill
+ Kolegij: \> Elektronike\\
+ Mentorica: \> Sanja Grbac Babić, mag. računarstva, v.predavač
+\end{tabbing} 
+
+\end{abstract}
+\newpage
+\tableofcontents
+\listoftables	%ako ih ima puno prebaci na kraj dokumenta
+\listoffigures	%ako ih ima puno prebaci na kraj dokumenta
+
+%Ovdje kreće rad ili može se koristiti
+%\input{filename} (da nastavi pisati kako da je copy/paste) ili
+%\include{filename} (da ubaci na novu stranicu. Ok za nova poglavlja i sl)
+\chapter{Opis zadatka i ograničenja}\label{OpisIOgranicenja}
+\section{Uvod}
+
+\newpage
+\nocite{*}
+\addcontentsline{toc}{chapter}{Literatura}
+\bibliography{literatura}
+
+\newpage
+\appendix
+
+\end{document}
