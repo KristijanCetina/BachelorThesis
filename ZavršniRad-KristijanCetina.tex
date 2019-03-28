@@ -1,6 +1,6 @@
-\documentclass[11pt,a4paper]{report}
+\documentclass[11pt,a4paper,openright]{report}
 \usepackage[utf8]{inputenc}
-\usepackage[croatian]{babel}
+\usepackage[english, croatian]{babel}
 \usepackage{amsmath, amsfonts, amssymb}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
@@ -15,11 +15,14 @@
 \bibliographystyle{abbrv}%ieeetr, abbrv
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \addto{\captionscroatian}{\renewcommand{\bibname}{Literatura}}
+\setcounter{chapter}{-1}
 
-\usepackage[blocks]{authblk}% The option is for block layout
+\pagenumbering{Roman}
 
-\newcommand{\kolegij}{}
-\newcommand{\naslovRada}{Arduino datalogger \\ {\large Završni rad}} 
+%\usepackage[blocks]{authblk}% The option is for block layout
+
+\newcommand{\kolegij}{Završni rad}
+\newcommand{\naslovRada}{GPS datalogger \\ {\large Završni rad}} 
 \newcommand{\mailFriendlynaslovRada}{BachelorThesis}
 
 \author{
@@ -49,49 +52,67 @@ Stručni studij politehnike\\
 \vspace{3cm}
 {\let\newpage\relax\maketitle}
 \thispagestyle{empty}
-\vfill
+%\vfill
+\begin{abstract}
+
+U ovom radu predstavljam
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium libero non odio tincidunt semper. Vivamus sollicitudin egestas mattis. Sed vitae risus vel ex tincidunt molestie nec vel leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas quis massa tincidunt, faucibus magna non, fringilla sapien. In ullamcorper justo a scelerisque egestas. Ut maximus, elit a rutrum viverra, lectus sapien varius est, vel tempor neque mi et augue. Fusce ornare venenatis nunc nec feugiat. Proin a enim mauris. Mauris dignissim vulputate erat, vitae cursus risus elementum at. Cras luctus pharetra congue. Aliquam id est dictum, finibus ligula sed, tempus arcu. \\
+
+\textbf{Ključne riječi:} \textit{rijec, dva, tri \ldots}
+
+\vspace{3cm}
+
+\begin{tabbing}
+\hspace{50pt}\=\kill
+ Kolegij: \> Elektronika\\
+ Mentorica: \> Sanja Grbac Babić, mag. računarstva, v.predavač
+\end{tabbing} 
+\end{abstract}
+
+\begin{otherlanguage}{english} 
+\begin{abstract}
+Abstract in English\\
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium libero non odio tincidunt semper. Vivamus sollicitudin egestas mattis. Sed vitae risus vel ex tincidunt molestie nec vel leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas quis massa tincidunt, faucibus magna non, fringilla sapien. In ullamcorper justo a scelerisque egestas. Ut maximus, elit a rutrum viverra, lectus sapien varius est, vel tempor neque mi et augue. Fusce ornare venenatis nunc nec feugiat. Proin a enim mauris. Mauris dignissim vulputate erat, vitae cursus risus elementum at. Cras luctus pharetra congue. Aliquam id est dictum, finibus ligula sed, tempus arcu. \\
+
+\textbf{Keywords:} \textit{rijec, dva, tri \ldots}
+
+\end{abstract}
+\end{otherlanguage}
 
 \end{titlepage}
 \newpage
+
 \vspace*{\fill}
 \begin{flushright}
 \textit{Posveta}
 \end{flushright}
 \vspace*{\fill}
 \newpage
+
 \section*{Zahvala}
 Zahvala svima koji zaslužuju
 \newpage
+
 \section*{Izjava o samostalnosti izrade završnog rada}
-Izjavljujem da sam završni rad na temu „Arduino datalogger“ samostalno izradio uz pomoć mentorice Sanje Grbac Babić mag. računarstva, koristeći navedenu stručnu literaturu i znanje stečeno tijekom studiranja. Završni rad je pisan u duhu hrvatskog jezika.
-\vspace{3cm}
+Izjavljujem da sam završni rad na temu "GPS datalogger" samostalno izradio uz pomoć mentorice Sanje Grbac Babić mag. računarstva, koristeći navedenu stručnu literaturu i znanje stečeno tijekom studiranja. Završni rad je pisan u duhu hrvatskog jezika.
+\vspace{\fill}
 \begin{flushright}
 Student: Kristijan Cetina\\
 \vspace{15mm}
 --------------------------------------------------------------
 \end{flushright}
 \newpage
-\begin{abstract}
 
-U ovom radu predstavljam
-
-\vspace{3cm}
-
-\begin{tabbing}
-\hspace{50pt}\=\kill
- Kolegij: \> Elektronike\\
- Mentorica: \> Sanja Grbac Babić, mag. računarstva, v.predavač
-\end{tabbing} 
-
-\end{abstract}
-\newpage
 \tableofcontents
 \listoftables	%ako ih ima puno prebaci na kraj dokumenta
 \listoffigures	%ako ih ima puno prebaci na kraj dokumenta
+\newpage
 
+\pagenumbering{arabic}
 %Ovdje kreće rad ili može se koristiti
 %\input{filename} (da nastavi pisati kako da je copy/paste) ili
 %\include{filename} (da ubaci na novu stranicu. Ok za nova poglavlja i sl)
+
 \chapter{Opis zadatka i ograničenja}\label{OpisIOgranicenja}
 \section{Uvod}
 
