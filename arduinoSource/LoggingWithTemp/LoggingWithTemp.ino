@@ -268,6 +268,12 @@ void loop(){
       Serial.print("No Fix");
       return;
     }
+
+    float voltage = analogRead(TempSenzor) * 3.3;  //očitava vrijednosti izvoda (A0)
+    voltage /= 1024.0;
+    float Temperatura = (voltage - 0.5) * 100;
+    Serial.print("Trenutno: ");
+    Serial.println(Temperatura);
     
     // Rad. lets log it!
     Serial.println("Log");
@@ -276,13 +282,9 @@ void loop(){
     if (stringsize != logfile.write((uint8_t *)stringptr, stringsize))    //write the string to the SD file
         error(4);
     if (strstr(stringptr, "RMC") || strstr(stringptr, "GGA") )   logfile.flush();
+    logfile.print(Temperatura);
     Serial.println();
 
-    float voltage = analogRead(TempSenzor) * 3.3;  //očitava vrijednosti izvoda (A0)
-    voltage /= 1024.0;
-    float Temperatura = (voltage - 0.5) * 100;
-    Serial.print("Trenutno: ");
-    Serial.println(Temperatura);
   }
   //Stvari za temp sensor
   /*
