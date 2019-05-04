@@ -12,7 +12,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage[section]{placeins}
 \usepackage[final]{pdfpages}
-\bibliographystyle{abbrv}%ieeetr, abbrv
+\bibliographystyle{ieeetr}%ieeetr, abbrv
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \addto{\captionscroatian}{\renewcommand{\bibname}{Literatura}}
 \setcounter{chapter}{-1}
@@ -87,21 +87,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium libe
 \textit{Posveta}
 \end{flushright}
 \vspace*{\fill}
-\newpage
-
-\section*{Zahvala}
-Zahvala svima koji zaslužuju
-\newpage
-
-\section*{Izjava o samostalnosti izrade završnog rada}
-Izjavljujem da sam završni rad na temu "GPS datalogger" samostalno izradio uz pomoć mentorice Sanje Grbac Babić mag. računarstva, koristeći navedenu stručnu literaturu i znanje stečeno tijekom studiranja. Završni rad je pisan u duhu hrvatskog jezika.
-\vspace{\fill}
-\begin{flushright}
-Student: Kristijan Cetina\\
-\vspace{15mm}
---------------------------------------------------------------
-\end{flushright}
-\newpage
+\include{zahvala}
+\include{izjava}
 
 \tableofcontents
 \listoftables	%ako ih ima puno prebaci na kraj dokumenta
@@ -109,13 +96,10 @@ Student: Kristijan Cetina\\
 \newpage
 
 \pagenumbering{arabic}
-%Ovdje kreće rad ili može se koristiti
-%\input{filename} (da nastavi pisati kako da je copy/paste) ili
-%\include{filename} (da ubaci na novu stranicu. Ok za nova poglavlja i sl)
+\include{prvi}
 
 \chapter{Opis zadatka i ograničenja}\label{OpisIOgranicenja}
 \section{Uvod}
-
 \chapter{Hardware}
 \section{Opis korištene platforme}
 
