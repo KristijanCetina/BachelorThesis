@@ -13,13 +13,13 @@
 \usepackage[section]{placeins}
 \usepackage[final]{pdfpages}
 \bibliographystyle{ieeetr}%ieeetr, abbrv
+\pgfplotsset{compat=1.15}
+\usepackage{lipsum}
+
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \addto{\captionscroatian}{\renewcommand{\bibname}{Literatura}}
 \setcounter{chapter}{-1}
-
 \pagenumbering{Roman}
-
-%\usepackage[blocks]{authblk}% The option is for block layout
 
 \newcommand{\kolegij}{Završni rad}
 \newcommand{\naslovRada}{GPS datalogger \\ {\large Završni rad}} 
@@ -27,11 +27,6 @@
 
 \author{
 Kristijan Cetina \\{\small JMBAG: 2424011721} \\ {\href{mailto:kcetina@politehnika-pula.hr?subject=\mailFriendlynaslovRada}{{\footnotesize kcetina@politehnika-pula.hr}}}} 
-%\author[1]{Kristijan Cetina}
-
-%\affil[1]{\href{mailto:kcetina@politehnika-pula.hr?subject=\mailFriendlynaslovRada}{kcetina@politehnika-pula.hr} JMBAG: 2424011721}
-
-%\title{\kolegij \\ \naslovRada}
 \title{\naslovRada}
 \date{Pula, \today}
 
@@ -52,14 +47,12 @@ Stručni studij politehnike\\
 \vspace{3cm}
 {\let\newpage\relax\maketitle}
 \thispagestyle{empty}
-%\vfill
+
 \begin{abstract}
 
-U ovom radu predstavljam
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium libero non odio tincidunt semper. Vivamus sollicitudin egestas mattis. Sed vitae risus vel ex tincidunt molestie nec vel leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas quis massa tincidunt, faucibus magna non, fringilla sapien. In ullamcorper justo a scelerisque egestas. Ut maximus, elit a rutrum viverra, lectus sapien varius est, vel tempor neque mi et augue. Fusce ornare venenatis nunc nec feugiat. Proin a enim mauris. Mauris dignissim vulputate erat, vitae cursus risus elementum at. Cras luctus pharetra congue. Aliquam id est dictum, finibus ligula sed, tempus arcu. \\
+\lipsum[1-2]
 
-\textbf{Ključne riječi:} \textit{rijec, dva, tri \ldots}
-
+\paragraph{Ključne rječi} \textit{rijec, dva, tri \ldots}
 \vspace{3cm}
 
 \begin{tabbing}
@@ -72,49 +65,29 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium libe
 \begin{otherlanguage}{english} 
 \begin{abstract}
 Abstract in English\\
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium libero non odio tincidunt semper. Vivamus sollicitudin egestas mattis. Sed vitae risus vel ex tincidunt molestie nec vel leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas quis massa tincidunt, faucibus magna non, fringilla sapien. In ullamcorper justo a scelerisque egestas. Ut maximus, elit a rutrum viverra, lectus sapien varius est, vel tempor neque mi et augue. Fusce ornare venenatis nunc nec feugiat. Proin a enim mauris. Mauris dignissim vulputate erat, vitae cursus risus elementum at. Cras luctus pharetra congue. Aliquam id est dictum, finibus ligula sed, tempus arcu. \\
+\lipsum[3-4]
 
-\textbf{Keywords:} \textit{rijec, dva, tri \ldots}
-
+\paragraph{Keywords:} \textit{word, two, three \ldots}
 \end{abstract}
 \end{otherlanguage}
-
 \end{titlepage}
-\newpage
 
-\vspace*{\fill}
-\begin{flushright}
-\textit{Posveta}
-\end{flushright}
-\vspace*{\fill}
+\include{posveta}
 \include{zahvala}
 \include{izjava}
 
 \tableofcontents
 \listoftables	%ako ih ima puno prebaci na kraj dokumenta
 \listoffigures	%ako ih ima puno prebaci na kraj dokumenta
-\newpage
 
 \pagenumbering{arabic}
-\include{prvi}
+\include{uvod}
+\include{hardware}
+\include{software}
+\include{zakljucak}
 
-\chapter{Opis zadatka i ograničenja}\label{OpisIOgranicenja}
-\section{Uvod}
-\chapter{Hardware}
-\section{Opis korištene platforme}
-
-\chapter{Software}
-\section{Prikupljanja podataka: software na Arduinu}
-\section{Obrada i prezentacija prikupljenih podataka: Jupyter Notebook}
-
-\chapter{Zaključak}
-
-\newpage
 \nocite{*}
 \addcontentsline{toc}{chapter}{Literatura}
 \bibliography{literatura}
-
-\newpage
-\appendix
 
 \end{document}
