@@ -254,5 +254,9 @@ TSWLatexianTemp*
 # standalone packages
 *.sta
 
+# Eagle backup
+*.#s*
+*.#b*
+
 # misc
 prijava završnog rada.docx
