@@ -118,8 +118,8 @@ void setup() {
   Serial.begin(115200);
   Serial.println("\r\nUltimate GPSlogger Shield");
   pinMode(ledPin, OUTPUT);
-  pinMode(TempSenzor, INPUT);                        //postavi izvod TempSenzor (A0) kao ulazni
-  analogReference(EXTERNAL);
+  pinMode(TempSenzor, INPUT); //postavi izvod TempSenzor (A0) kao ulazni
+  analogReference(EXTERNAL);  // Koristim 3.3 Vref
   
   // make sure that the default chip select pin is set to
   // output, even if you don't use it:
@@ -267,7 +267,7 @@ void loop(){
     }
 
     float voltage = analogRead(TempSenzor) * 3.3;  //očitava vrijednosti izvoda (A0)
-    voltage /= 1024.0;
+    voltage /= 1024.0; //10bit ADC
     float Temperatura = (voltage - 0.5) * 100;
     Serial.print("Trenutno: ");
     Serial.println(Temperatura);
@@ -275,11 +275,36 @@ void loop(){
     // Rad. lets log it!
     Serial.println("Log");
 
+    char tempBuff[5];
+    dtostrf(Temperatura,0,2,tempBuff);
+    uint8_t tempSize = strlen(tempBuff);
+/*
+    //strcpy(stringptr,tempBuff);
+    //Serial.println(tempBuff);
+
     uint8_t stringsize = strlen(stringptr);
-    if (stringsize != logfile.write((uint8_t *)stringptr, stringsize))    //write the string to the SD file
+    logfile.write((uint8_t *)stringptr, stringsize);    //write the string to the SD file
+    logfile.write(tempBuff);
+
+    char data[80];
+    strcpy(data, *stringptr);
+/*    strcpy(data, ",");
+    strcpy(data, tempBuff);
+
+    Serial.println(data);
+    
+    Serial.println(tempBuff);
+    Serial.println(strlen(tempBuff));
+    Serial.println(stringsize);
+*/
+    //logfile.flush();
+
+ // ovaj blok kao dela pa pomalo s tim :-)
+        uint8_t stringsize = strlen(stringptr);// + tempSize;
+        if (stringsize != logfile.write((uint8_t *)stringptr, stringsize))    //write the string to the SD file
         error(4);
     if (strstr(stringptr, "RMC") || strstr(stringptr, "GGA") )   logfile.flush();
-    logfile.print(Temperatura);
+    logfile.write(tempBuff);
     Serial.println();
 
   }
