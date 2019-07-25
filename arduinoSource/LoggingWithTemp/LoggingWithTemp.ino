@@ -278,25 +278,7 @@ void loop(){
     char tempBuff[5];
     dtostrf(Temperatura,0,2,tempBuff);
     uint8_t tempSize = strlen(tempBuff);
-/*
-    //strcpy(stringptr,tempBuff);
-    //Serial.println(tempBuff);
 
-    uint8_t stringsize = strlen(stringptr);
-    logfile.write((uint8_t *)stringptr, stringsize);    //write the string to the SD file
-    logfile.write(tempBuff);
-
-    char data[80];
-    strcpy(data, *stringptr);
-/*    strcpy(data, ",");
-    strcpy(data, tempBuff);
-
-    Serial.println(data);
-    
-    Serial.println(tempBuff);
-    Serial.println(strlen(tempBuff));
-    Serial.println(stringsize);
-*/
     //logfile.flush();
 
  // ovaj blok kao dela pa pomalo s tim :-)
