@@ -46,4 +46,35 @@ Ako se koriste open source proizvodi moguće je samostalno rekreirati proizvod u
 
 
 \section{Arduino platforma}
-Arduino je elektronička platforma otvorenog koda \footnote{\href{https://www.arduino.cc/en/Guide/Introduction}{https://www.arduino.cc/en/Guide/Introduction}} baziran na hardwareu i softwareu koje je lako za koristiti.
+Arduino je elektronička platforma otvorenog koda\footnote{\href{https://www.arduino.cc/en/Guide/Introduction}{https://www.arduino.cc/en/Guide/Introduction}} baziran na hardwareu i softwareu koje je lako za koristiti.
+Arduino platforma obuhvaća mikrokontrolerske pločice bazirane na AVR arhitekturi s integriranim digitalnim, alalognim ulazima i izlazima kao i PWM\footnote{Pulse Width Modulation - Pulsno širinska modulacija} izlazima.
+Platforma omogućava lagano spajanje dodatnih vanjskih uređaja kao što su razni senzori, releji, servo i motori putem dodatnog upravljačkog modula i ostale elektroničke i elektromehaničke komponente.
+Sheme svih mikrokontrolera objavljene pod Creative Commons\footnote{\href{https://creativecommons.org/}{https://creativecommons.org/}} licencom i javno dostupne svim zainteresiranim stranama.
+
+Adruino pločice su relativno povoljne u usporedbi s ostalim platformama i kao takve omogućavaju pristupačnije učenje svim zainteresiranima.
+Potrebno je ponekad malo spretnosti s lemilicom dok se često mogu slagati moduli na prototipnoj pločici bez lemljenja sa izradom spojeva putem spojnih žica.
+
+Jednostavno korisničko sučelje (IDE\footnote{Integrated development environment}) za izradu korisničkih programa (\textit{sketch}) je jednostavno za korištenje za početnike dok istovremeno omogućava izradu vrlo kompleksnih programa iskusnim korisnicima. 
+IDE je kompatibilan s većinom danas raspostranjenih operacijskih sustava (GNU/Linux, MacOS i Windows).
+Programski jezik za izradu programa je baziran na C/C++ te omogućava daljnje proširivanje kroz C++ biblioteke ili koristiti AVR-C programski jezik.
+
+\section{Obrada i prezentacija prikupljenih podataka: Jupyter Notebook}
+U ovom radu za obradu i prikazivanje podataka korišten je programski jezik Python\footnote{\href{https://www.python.org/}{https://www.python.org/}} uz dodatke Pandas\footnote{\href{https://pandas.pydata.org/}{https://pandas.pydata.org/}} i Matplotlib\footnote{\href{https://matplotlib.org/}{https://matplotlib.org/}}.
+Pandas omogućava lakšu manipulaciju podacima dok Matplotlib omogućava izradu kvaitetnih grafova s velikom mogučnošću prilagodbe raznim željama i potrebama.
+Sve zajedno je implementirano kroz sustav \emph{interaktivne bilježnice} koja omogućava brzu i jednostavnu obradu podataka kao i njeno dijeljenje sa svim zainteresiranim stranama.
+
+\section{Git}
+Git\footnote{\href{https://git-scm.com/}{https://git-scm.com/}} je distribuirani sustav za verzioniranje koda i ostalog rada kojeg želimo djeliti sa suradnicima.
+Git sa svojim jednostavnim i brzim granama omogućava lakši razvoj proizvoda kao i ispitivanje mogućnosti i funkcija.
+Kada se želi ispitati neka funkcionalnost bez da se ugrozi ono što do sada radi kako trebe nema potrebe kopirati cijeli projekt u novi folder i onda u njemu testirati već se jednostavno kreira nova grana u kojoj se radi razvoj i kada smo sigurni da sve radi kako želimo onda se ta grana ujedini s glavnom granom projekta koja prihvati dodatne funkcionalnosti koje su razvijene za proizvod.
+Kako je Git lagan za resurse onda se može kreirati vrlo veliki broj grana za razne potrebe bez značajnog utjecaja na performanse razvojnog računala ili potrošnje spremišnog prostora.
+
+S obzirom na distibuiranu narav Gita svaki suradnik koji radi na projektu ima svoju kopiju na kojoj radi te nije vezan za neki server i stalnu komunikaciju s ostatkom tima već je ista potrebna samo kada se povlače i šalju učinjene promjene.
+
+Git je nastao 2005 godine za potrebe razvoja Linux jezgre i od tada je poprimio mnoge simpatije unutar inženjerske zajednice koja ga koristi kako bi zajednički razvija projekte.
+
+Kako bi se olakšalo djeljenje i suradnja na projektima 2008. godine je pokrenut GitHub - centralno mjesto za usluge poslužitelja\footnote{\href{https://github.com/features}{https://github.com/features}} (\textit{hosting}) putem kojeg je moguće pratiti životni ciklus i povijet projekta.
+Svatko može pronaći projekt koji ga zanima te ukoliko ima dovoljno vremena i znanja može i pridonjeti njegovom razvoju.
+Brojne kompanije koriste GitHub kao bi podjelile svoje projekte. Podatak od travnja 2019. godine kaže kako više od 2.1 miljuna kompanija i organizacija koristi GitHub.
+Jedna od njih je i Adafruit - kompanija koja proizvodi elektroničke dodatke za Arduino i druge platforme i fokusirana je na edukacija mladih (i onih koji se tako osjećaju), a njihov GitHub sadrži više od 1100 repozitorija\footnote{\href{https://github.com/adafruit}{https://github.com/adafruit/}}.
+Upravo je njihov GPS Logger Shield korišten u ovom projektu, a dostupnos dokumentacije i dostupna podrška je jedan od glavnih razloga zašto je odlučeno koristiti upravo taj proizvod.
