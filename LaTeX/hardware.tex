@@ -1,2 +1,18 @@
 \chapter{Hardware}
 \section{GPS logging shield}
+
+Na shemi \ref{shema:AdafruitLoggerShield} nalazi se shema gotovor elektroničkog sklopa kako dolazi iz tvornice\footnote{Kompletna dokumentacija dostupna je na \url{https://learn.adafruit.com/adafruit-data-logger-shield?view=all}}\footnote{GitHub repozitorij korištene verzije dostupan na \url{https://github.com/adafruit/Adafruit-GPS-Logger-Shield-PCB}}.
+Na samoj tiskanoj pločici postoji tkz. prototipno područje za dodavanje vanjskih elemanata čiji je raster 2.54 mm koji odgovara standardu \textit{true-hole} elemenata.
+Na to područje je dodan temperaturni senzor TMP36\footnote{Datasheet dostupan na \url{https://github.com/KristijanCetina/BachelorThesis/blob/master/resources/TMP35_36_37.pdf}} zajedno s dodatnim pasivnim elementima koji služe kao filter smetnji koje se javljaju u radu zbog okoline.
+Shema spoja je prikazana na slici \ref{shema:TMP36}.
+
+
+\begin{figure}
+\includegraphics[width=1\textwidth]{{"../tempSensor/TMP36_schematic"}.jpg}
+\caption{Shema spoja TMP36 senzora}\label{shema:TMP36}
+\end{figure}
+
+\begin{figure}
+\includegraphics[angle=90,width=1.1\textwidth]{{"../Adafruit-GPS-Logger-Shield-PCB/Adafruit GPS Logger Shield"}.pdf}
+\caption{Shema Adafruit GPS Logger Shield}\label{shema:AdafruitLoggerShield}
+\end{figure}
