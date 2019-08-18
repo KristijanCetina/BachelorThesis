@@ -260,3 +260,6 @@ TSWLatexianTemp*
 
 # misc
 prijava završnog rada.docx
+
+# Jupyter checkpoint
+.ipynb_checkpoints
