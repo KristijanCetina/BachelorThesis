@@ -255,8 +255,8 @@ TSWLatexianTemp*
 *.sta
 
 # Eagle backup
-*.#s*
-*.#b*
+*.s#*
+*.b#*
 
 # misc
 prijava završnog rada.docx
