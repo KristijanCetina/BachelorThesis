@@ -1,0 +1,63 @@
+\chapter{Prikupljanje podataka - hardware}
+\section{GPS logging shield}
+
+\begin{figure}
+\includegraphics[width=1\textwidth]{{"../tempSensor/TMP36_schematic"}.jpg}
+\caption{Shema spoja TMP36 senzora}\label{shema:TMP36}
+\end{figure}
+
+\begin{figure}
+\includegraphics[angle=90,width=1.1\textwidth]{{"../Adafruit-GPS-Logger-Shield-PCB/Adafruit GPS Logger Shield"}.pdf}
+\caption{Shema Adafruit GPS Logger Shield}\label{shema:AdafruitLoggerShield}
+\end{figure}
+
+Na shemi \ref{shema:AdafruitLoggerShield} nalazi se shema gotovog elektroničkog sklopa kako dolazi iz tvornice\footnote{Kompletna dokumentacija dostupna je na \url{https://learn.adafruit.com/adafruit-data-logger-shield?view=all}}\footnote{GitHub repozitorij korištene verzije dostupan na \url{https://github.com/adafruit/Adafruit-GPS-Logger-Shield-PCB}}.
+Na samoj tiskanoj pločici postoji tkz. prototipno područje za dodavanje vanjskih elemanata čiji je raster 2.54 mm koji odgovara standardu \textit{true-hole} elemenata.
+Na to područje je dodan temperaturni senzor TMP36\footnote{Datasheet dostupan na \url{https://github.com/KristijanCetina/BachelorThesis/blob/master/resources/TMP35_36_37.pdf}}\label{ftn:TMP36Datasheet} zajedno s dodatnim pasivnim elementima koji služe kao filter smetnji koje se javljaju u radu zbog okoline.
+Shema spoja je prikazana na slici \ref{shema:TMP36}.
+
+\section{Prikupljanje podataka o temperaturi}
+Kako svaki elektronički sklop ima definirani raspon radne temperature bitno je znati u kojim uvjetima isti se nalazi.
+Ukoliko je temperatura previsoka može se uključiti aktivno hlađenje ili ako se unaprijed zna da će se sklop nalaziti pod povišenom radnom temperaturom onda se može konstrurati adekvatan sustav hlađenja.
+Isto vrijedi za prenisku temperaturu.
+Prema ranije spomenutoj shemi \ref{shema:TMP36} dodatn je temperaturni senzor koji mjeri radnu temperaturu okoline uređaja.
+Pri testiranju ova vrsta senzora se pokazala veoma pouzdana, uz minimalno samozagrijavanje koje bi utjecalo na točnost mjerene veličine ali je isto tako pokazala vrlo brze promjene izlazne vrijednosti koja može biti do vanjskih smetnji.
+Kako bi se otklonio taj problem primjenjena su dva rješenja.
+Prvi je hardwareski fiter - kondenzatori koji je prikazan na shemi \ref{shema:TMP36}, a drugi je softwareski fiter.
+Tvornički podaci o izlaznom naponu šuma mogu se pronaći u datasheetu uređaja, slika 20.
+Na slici \ref{data:RawWithOutCaps} prikazane su izlazne vrijednosti senzora bez ikakvog filtriranja i obrade.
+frekvencija uzorkovanja je 10Hz (10 očitanja u sekundi)
+Svakako nije realno za očekivati da se temperatura mjenja sukladno očitanim vrijednostima.
+
+\subsection{Softwareski filter}
+Softwareski filter radi na principu da očitava 10 vrijedosti sa senzora te ih sprema u polje.
+Potom ih sortira po veličini i uzima medijan\footnote{Medijan (mediana, centralna vrijednost) je pojam iz statistike koji određuje sredinu distribucije. Pola vrijednosti skupa (distribucije) nalazi se iznad mediane, a pola ispod} vrijednost kao točnu temperaturu.
+Na taj način se postiže da se eliminiraju sve vrlo visoke i vrlo niske vrijednosti koje se mogu pojaviti zbog šuma u signalu.
+Vrijenosti se čitaju svakih 100 ms te uz račuanje na bazi 10 vrijednosti daje frekvenciju od 1 očitanja u sekundi koja odgovara i frekvenciji uzorkovanja podataka sa GPS senzora.
+Prilikom testiranja utvrđeno je da veći broj uzoraka ne doprinosti kvaliteti izmjerenih vrijednosti, a pro manjem broju uzoraka može se potkrasti poneka nerealna vrijenosti.
+Kako je očekivano vrijeme promjene temperature značajno duže od 1 sekune onda su prihvaćene navedene vrijednosti i metoda filtriranja.
+Na slici \ref{data:FilteredWithOutCaps} prikazane su izlazne vrijendosti senzora nakon primjene opisanog softwareskog filtera.
+Primjeti se značajno manje skokova od nečega što se može smatrati stvarna vrijendost. 
+
+
+%\begin{figure}
+%\includegraphics[width=0.5\textwidth]{{"../tempSensor/RawWithOutCaps"}.jpg}
+%\caption{Vrijednosti senzora bez filtriranja}\label{data:RawWithOutCaps}
+%\end{figure}
+
+\begin{figure}
+\begin{minipage}[c]{0.49\linewidth}
+\includegraphics[width=\linewidth]{{"../tempSensor/RawWithOutCaps"}.jpg}
+\caption{Vrijednosti senzora bez filtriranja}\label{data:RawWithOutCaps}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.49\linewidth}
+\includegraphics[width=\linewidth]{{"../tempSensor/FilteredWithOutCaps"}.jpg}
+\caption{Vrijednosti senzora sa softwareskim filtriranja}\label{data:FilteredWithOutCaps}
+\end{minipage}%
+\end{figure}
+
+\subsection{Hardwareski filter}
+Filter je jednostavna mreža keramičkih kondenzatora vrijednosti $10 pF$ koji su spojeni što bliže senzoru između izvoda za napajanje i izlaza senzora prema točki nultog potencijala (\textit{GND, masa}) kako bi apsorbirali eventualne smetnje.
+Iako je softwareski fiter u nekim situacijama dovoljno dobar ovo jednostavno i jeftino rješenje daje dodatan sloj filtriranja koji za posljedicu ima vrlo glatko očitanje temperature bez skokova u vrijednostima.
+
