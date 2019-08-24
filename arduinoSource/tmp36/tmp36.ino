@@ -3,7 +3,7 @@ int Temperatura;
 int TempSenzor = A0;
 
 #define aref_voltage 3.3
-float temp[10] = { 0 };
+float temp[20] = { 0 };
 
 float i = 0;
 int n = 0;
@@ -16,7 +16,7 @@ void setup() {
 }
 void loop()
 {
-  for (int i = 0; i<10; i++)
+  for (int i = 0; i<20; i++)
   {
     float voltage = analogRead(TempSenzor) * 3.3;  //očitava vrijednosti izvoda (A0)
     voltage /= 1024.0;
@@ -25,7 +25,7 @@ void loop()
     /*Serial.print("Trenutno: ");
     Serial.println(Temperatura);
     */
-    delay(10);                                         //čekaj 500 milisekundi
+    delay(50);                                         //čekaj 500 milisekundi
   }
   Array_sort(temp, n);
   median = Find_median(temp, n);
