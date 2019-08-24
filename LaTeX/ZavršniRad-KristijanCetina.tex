@@ -14,6 +14,8 @@
 \usepackage[final]{pdfpages}
 \bibliographystyle{ieeetr}%ieeetr, abbrv
 \pgfplotsset{compat=1.15}
+\usepackage{listings}
+\usepackage{appendix}
 \usepackage{lipsum}
 %\usepackage{chngcntr}	%Continuous footnote numbering
 %\counterwithout{footnote}{chapter} %Continuous footnote numbering
@@ -76,7 +78,7 @@ Abstract in English\\
 \include{izjava}
 
 \tableofcontents
-\listoftables	%ako ih ima puno prebaci na kraj dokumenta
+%\listoftables	%ako ih ima puno prebaci na kraj dokumenta
 \listoffigures	%ako ih ima puno prebaci na kraj dokumenta
 
 \pagenumbering{arabic}
@@ -88,5 +90,13 @@ Abstract in English\\
 \nocite{*}
 \addcontentsline{toc}{chapter}{Literatura}
 \bibliography{literatura}
+
+%Ako treba dodati kod kao appendix 
+%\newpage
+%\appendix
+%\begin{appendices}\appendix
+%\chapter{Programski kod na Arduino mikroračunalu}
+%\lstinputlisting[language=c++]{../arduinoSource/LoggingWithTemp/LoggingWithTemp.ino}
+%\end{appendices}
 
 \end{document}

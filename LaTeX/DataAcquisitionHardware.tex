@@ -11,12 +11,12 @@
 \caption{Shema Adafruit GPS Logger Shield}\label{shema:AdafruitLoggerShield}
 \end{figure}
 
-Na shemi \ref{shema:AdafruitLoggerShield} nalazi se shema gotovog elektroničkog sklopa kako dolazi iz tvornice\footnote{Kompletna dokumentacija dostupna je na \url{https://learn.adafruit.com/adafruit-data-logger-shield?view=all}}\footnote{GitHub repozitorij korištene verzije dostupan na \url{https://github.com/adafruit/Adafruit-GPS-Logger-Shield-PCB}}.
+Na shemi \ref{shema:AdafruitLoggerShield} nalazi se shema gotovog elektroničkog sklopa kako dolazi iz tvornice\footnote{Kompletna dokumentacija dostupna je na \url{https://learn.adafruit.com/adafruit-ultimate-gps-logger-shield?view=all}}\footnote{GitHub repozitorij korištene verzije dostupan na \url{https://github.com/adafruit/Adafruit-GPS-Logger-Shield-PCB}}.
 Na samoj tiskanoj pločici postoji tkz. prototipno područje za dodavanje vanjskih elemanata čiji je raster 2.54 mm koji odgovara standardu \textit{true-hole} elemenata.
 Na to područje je dodan temperaturni senzor TMP36\footnote{Datasheet dostupan na \url{https://github.com/KristijanCetina/BachelorThesis/blob/master/resources/TMP35_36_37.pdf}}\label{ftn:TMP36Datasheet} zajedno s dodatnim pasivnim elementima koji služe kao filter smetnji koje se javljaju u radu zbog okoline.
 Shema spoja je prikazana na slici \ref{shema:TMP36}.
 
-\section{Prikupljanje podataka o temperaturi}
+\section{Prikupljanje podataka o temperaturi}\label{sec:TempData}
 Kako svaki elektronički sklop ima definirani raspon radne temperature bitno je znati u kojim uvjetima isti se nalazi.
 Ukoliko je temperatura previsoka može se uključiti aktivno hlađenje ili ako se unaprijed zna da će se sklop nalaziti pod povišenom radnom temperaturom onda se može konstrurati adekvatan sustav hlađenja.
 Isto vrijedi za prenisku temperaturu.
@@ -39,25 +39,73 @@ Kako je očekivano vrijeme promjene temperature značajno duže od 1 sekune onda
 Na slici \ref{data:FilteredWithOutCaps} prikazane su izlazne vrijendosti senzora nakon primjene opisanog softwareskog filtera.
 Primjeti se značajno manje skokova od nečega što se može smatrati stvarna vrijendost. 
 
-
-%\begin{figure}
-%\includegraphics[width=0.5\textwidth]{{"../tempSensor/RawWithOutCaps"}.jpg}
-%\caption{Vrijednosti senzora bez filtriranja}\label{data:RawWithOutCaps}
-%\end{figure}
-
-\begin{figure}
-\begin{minipage}[c]{0.49\linewidth}
+\begin{figure}[!h]
+\begin{minipage}{0.49\linewidth}
 \includegraphics[width=\linewidth]{{"../tempSensor/RawWithOutCaps"}.jpg}
 \caption{Vrijednosti senzora bez \mbox{filtriranja}}\label{data:RawWithOutCaps}
 \end{minipage}
 \hfill
-\begin{minipage}[c]{0.49\linewidth}
+\begin{minipage}{0.49\linewidth}
 \includegraphics[width=\linewidth]{{"../tempSensor/FilteredWithOutCaps"}.jpg}
 \caption{Vrijednosti senzora sa \mbox{softwareskim} filtriranja}\label{data:FilteredWithOutCaps}
-\end{minipage}%
+\end{minipage}
 \end{figure}
 
 \subsection{Hardwareski filter}
 Filter je jednostavna mreža keramičkih kondenzatora vrijednosti $10 pF$ koji su spojeni što bliže senzoru između izvoda za napajanje i izlaza senzora prema točki nultog potencijala (\textit{GND, masa}) kako bi apsorbirali eventualne smetnje.
 Iako je softwareski fiter u nekim situacijama dovoljno dobar ovo jednostavno i jeftino rješenje daje dodatan sloj filtriranja koji za posljedicu ima vrlo glatko očitanje temperature bez skokova u vrijednostima.
 
+Primjenom kombinacije softwareskog i hardwareskog filtriranja postignuta je vrlo zadovoljavajuća karakteristika dobivenih stabilnih vrijednosti bez nerealnih skokova i s vrlo glotkom tranzicijom kod grijanja ili hlađenja sklopa. Dobivene vrijednosti su prikazane na slici \ref{data:FilteredWithCaps}.
+\begin{figure}[!h]
+\includegraphics[angle=90,width=1.1\textwidth]{{"../tempSensor/FilteredWithCaps"}.jpg}
+\caption{Vrijednosti senzora primjenom kombinacije Sw i Hw filtera}\label{data:FilteredWithCaps}
+\end{figure}
+
+\section{Prikupljanje GPS podataka}
+GPS\footnote{Global Positioning System - Sustav globalnog pozicioniranja} je javni sustav u vlasništvu vlade SAD-a\footnote{\url{https://www.gps.gov}} za globoalno pozicioniranje baziran na satelitima s atomskim satovima koji odašilju vrlo točno i precizno trenutno vrijeme te su sinkkronizirani s zemaljskim satovima. 
+Bilo kakva odstupanja se korigiraju na dnevnoj bazi.
+Prijemnik prima signal sa satelita te izračunava točnu poziciju baziranu na poznatoj poziciji satelita i razlikama u primljenim vremenima od svakog satelita.
+Minimalno su potrebna 3 satelita za dobiti koordinate i 4 satelita za dobiti poziciju o nadmorskoj visini prijemnika.
+
+U ovom radu korišten je GPS chip MTK3339\footnote{\url{https://cdn-shop.adafruit.com/datasheets/GlobalTop-FGPMMOPA6C-Datasheet-V0A-Preliminary.pdf}} integriran na prije spomenuti Adafruit Ultimate GPS Logger Shield.
+
+
+Kao koristan izlaz prijemnik daje NMEA\footnote{\url{https://www.nmea.org/content/STANDARDS/NMEA_0183_Standard}} rečenicu. 
+Ovisno o potrebnim podacima mogu se koristiti razne rečenice, a u ovoj primjeni je korištena \$GPRMC\footnote{\url{http://aprs.gids.nl/nmea/}} koja daje minimalne potrebne podatke, a među kojima su vrijeme (UTC) i datum, pozicija i brzina.
+Primjer \$GPRMC rečenice je \begin{verbatim}
+$GPRMC,053005.000,A,4457.8784,N,01356.1351,E,36.41,124.90,310719,,,A*58
+\end{verbatim}
+pri čemu je:
+\begin{tabbing}
+\hspace{80pt}\=\kill
+ \$GPRMC \> Oznaka rečenice \\ 
+ 053005.000 \> UTC vrijeme (7:30:05 lokalno)\\ 
+ A \> Oznaka valjanosti, A = OK, V = warning \\ 
+ 4457.8784,N \> Zemljopisna širina \\ 
+ 01356.1351,E \> Zemljopins dužina \\ 
+ 36.41 \> Brzina u čvorovima ($\approx 67 km/h$)\\ 
+ 124.90 \> Smjer kretanja \\
+ 310719 \> Datum (31. srpnja 2019.)\\
+ A*58 \> Checksum (kontrolni broj)
+\end{tabbing} 
+Prilikom provjere primljenih podataka obavezno se provjerava
+\begin{itemize}
+\item da li primljni checksum odgovara izračunanom za datu rečenicu kako bi se izbjegle pogreške u komunikaciji,
+\item da li je oznaka valjanosti \textit{A} što znači da uređaj ima prijem s dovoljnog broj satelita da se može vjerovati primljenim podacima.
+\end{itemize}
+Provjeru valjanosti i checksuma odrađuje bibloteka koja je dostupna za Arduino platformu zajedno s ostalom dokumentacijom uređaja te nije bilo potrebno pisati poseban kod koji će to raditi.
+
+\section{Spremanje podataka na memorijsku karticu}
+Na korištenom Adafruit Ultimate GPS Logger Shieldu postoji utor za microSD memorisku karticu koja se koristi za zapisivanje prikupljenih podataka kako bi se isti mogli kasnije obraditi i prikazati.
+Sustav skupljene podatke sprema na memorisku karticu u .csv \footnote{Comma Separated Values} formatu koji je pogodan za kasniju obradu bilo putem Excel programskog alata ili drugih alata za obradu i vizualizaciju podataka.
+Svaki red predstavlja jedan zapis, a u odnosu na ranije prikazanu \$GPRMC rečenicu na kraju je dodan i podatak o trenutnoj temperaturi u $^\circ C$ koja je očitana sa senzora opisanog u poglavlju \ref{sec:TempData}.
+Frekvencija zapisivanja podatka je postavljena na 1 zapis u sekundi.
+Datoteka se automatski kreira prilikom uključivanja sklopa ako je SD kartica prisutna.
+Ime datoteke je GPSLOG\textit{XX}.csv pri čemu je \textit{XX} broj koji počinje od 00 i uvećava je za 1 kod svakog pokretanja. Testiranje je pokazalo da veličina datoteke s 10 sati ($\approx 36000$ zapisa) snimljnih podataka iznosi otprilike 2.7 Mb
+
+
+
+
+
+
+ 

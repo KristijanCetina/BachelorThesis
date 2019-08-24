@@ -25,7 +25,7 @@ void loop()
     /*Serial.print("Trenutno: ");
     Serial.println(Temperatura);
     */
-    delay(150);                                         //čekaj 500 milisekundi
+    delay(10);                                         //čekaj 500 milisekundi
   }
   Array_sort(temp, n);
   median = Find_median(temp, n);

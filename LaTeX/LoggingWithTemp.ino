@@ -7,19 +7,17 @@
 #include <Wire.h>         // this #include still required because the RTClib depends on it
 #include "RTClib.h"
 
-// Ladyada's logger modified by Bill Greiman to use the SdFat library
-//
-// This code shows how to listen to the GPS module in an interrupt
-// which allows the program to have more 'freedom' - just parse
-// when a new NMEA sentence is available! Then access data when
-// desired.
-//
-// Tested and works great with the Adafruit Ultimate GPS Shield
-// using MTK33x9 chipset
-//    ------> http://www.adafruit.com/products/
-// Pick one up today at the Adafruit electronics shop
-// and help support open source hardware & software! -ada
-// Fllybob added 10 sec logging option
+int voltage;
+int Temperatura;
+int TempSenzor = A0;
+
+#define aref_voltage 3.3
+float temp[10] = { 0 };
+
+float i = 0;
+int n = 0;
+float median = 0;
+
 SoftwareSerial mySerial(8, 7);
 Adafruit_GPS GPS(&mySerial);
 
@@ -58,7 +56,6 @@ void dateTime(uint16_t* date, uint16_t* time) {
  // return time using FAT_TIME macro to format fields
  *time = FAT_TIME(now.hour(), now.minute(), now.second());
 }
-
 
 // read a Hex value and return the decimal equivalent
 uint8_t parseHex(char c) {
@@ -107,7 +104,9 @@ void setup() {
   Serial.begin(115200);
   Serial.println("\r\nUltimate GPSlogger Shield");
   pinMode(ledPin, OUTPUT);
-
+  pinMode(TempSenzor, INPUT); //postavi izvod TempSenzor (A0) kao ulazni
+  analogReference(EXTERNAL);  // Koristim 3.3 Vref
+  
   // make sure that the default chip select pin is set to
   // output, even if you don't use it:
   pinMode(10, OUTPUT);
@@ -143,24 +142,18 @@ void setup() {
   //GPS.sendCommand(PMTK_SET_NMEA_OUTPUT_RMCGGA);
   // uncomment this line to turn on only the "minimum recommended" data
   GPS.sendCommand(PMTK_SET_NMEA_OUTPUT_RMCONLY);
-  // For logging data, we don't suggest using anything but either RMC only or RMC+GGA
-  // to keep the log files at a reasonable size
   // Set the update rate
   GPS.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ);   // 100 millihertz (once every 10 seconds), 1Hz or 5Hz update rate
-
   // Turn off updates on antenna status, if the firmware permits it
   GPS.sendCommand(PGCMD_NOANTENNA);
-
   // the nice thing about this code is you can have a timer0 interrupt go off
   // every 1 millisecond, and read data from the GPS for you. that makes the
   // loop code a heck of a lot easier!
 #ifndef ESP8266 // Not on ESP8266
   useInterrupt(true);
 #endif
-
   Serial.println("Ready!");
 }
-
 
 // Interrupt is called once a millisecond, looks for any new GPS data, and stores it
 #ifndef ESP8266 // Not on ESP8266
@@ -191,6 +184,37 @@ void useInterrupt(boolean v) {
 }
 #endif // ESP8266
 
+// function to sort the array in ascending order
+void Array_sort(float *array, int n)
+{
+  // declare some local variables
+  int i = 0, j = 0, temp = 0;
+  for (i = 0; i<n; i++)
+  {
+    for (j = 0; j<n - 1; j++)
+    {
+      if (array[j]>array[j + 1])
+      {
+        temp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
+      }
+    }
+  }
+}
+
+float Find_median(float array[], int n)
+{
+  float median = 0;
+  // if number of elements are even
+  if (n % 2 == 0)
+    median = (array[(n - 1) / 2] + array[n / 2]) / 2.0;
+  // if number of elements are odd
+  else
+    median = array[n / 2];
+  return median;
+}
+
 void loop(){
   DateTime now = rtc.now();
   if (! usingInterrupt) {
@@ -203,13 +227,6 @@ void loop(){
 
   // if a sentence is received, we can check the checksum, parse it...
   if (GPS.newNMEAreceived()) {
-    // a tricky thing here is if we print the NMEA sentence, or data
-    // we end up not listening and catching other sentences!
-    // so be very wary if using OUTPUT_ALLDATA and trying to print out data
-
-    // Don't call lastNMEA more than once between parse calls!  Calling lastNMEA
-    // will clear the received flag and can cause very subtle race conditions if
-    // new data comes in before parse is called again.
     char *stringptr = GPS.lastNMEA();
 
     if (!GPS.parse(stringptr))   // this also sets the newNMEAreceived() flag to false
@@ -221,14 +238,29 @@ void loop(){
       Serial.print("No Fix");
       return;
     }
+
+    float voltage = analogRead(TempSenzor) * 3.3;  //ocitava vrijednosti izvoda (A0)
+    voltage /= 1024.0; //10bit ADC
+    float Temperatura = (voltage - 0.5) * 100;
+    Serial.print("Trenutno: ");
+    Serial.println(Temperatura);
     
     // Rad. lets log it!
     Serial.println("Log");
 
-    uint8_t stringsize = strlen(stringptr);
-    if (stringsize != logfile.write((uint8_t *)stringptr, stringsize))    //write the string to the SD file
+    char tempBuff[5];
+    dtostrf(Temperatura,0,2,tempBuff);
+    uint8_t tempSize = strlen(tempBuff);
+
+    //logfile.flush();
+
+ // ovaj blok kao dela pa pomalo s tim :-)
+        uint8_t stringsize = strlen(stringptr);// + tempSize;
+        if (stringsize != logfile.write((uint8_t *)stringptr, stringsize))    //write the string to the SD file
         error(4);
     if (strstr(stringptr, "RMC") || strstr(stringptr, "GGA") )   logfile.flush();
+    logfile.write(tempBuff);
     Serial.println();
+
   }
 }

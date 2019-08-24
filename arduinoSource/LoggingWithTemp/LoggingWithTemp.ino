@@ -18,19 +18,6 @@ float i = 0;
 int n = 0;
 float median = 0;
 
-// Ladyada's logger modified by Bill Greiman to use the SdFat library
-//
-// This code shows how to listen to the GPS module in an interrupt
-// which allows the program to have more 'freedom' - just parse
-// when a new NMEA sentence is available! Then access data when
-// desired.
-//
-// Tested and works great with the Adafruit Ultimate GPS Shield
-// using MTK33x9 chipset
-//    ------> http://www.adafruit.com/products/
-// Pick one up today at the Adafruit electronics shop
-// and help support open source hardware & software! -ada
-// Fllybob added 10 sec logging option
 SoftwareSerial mySerial(8, 7);
 Adafruit_GPS GPS(&mySerial);
 
@@ -69,7 +56,6 @@ void dateTime(uint16_t* date, uint16_t* time) {
  // return time using FAT_TIME macro to format fields
  *time = FAT_TIME(now.hour(), now.minute(), now.second());
 }
-
 
 // read a Hex value and return the decimal equivalent
 uint8_t parseHex(char c) {
@@ -156,24 +142,18 @@ void setup() {
   //GPS.sendCommand(PMTK_SET_NMEA_OUTPUT_RMCGGA);
   // uncomment this line to turn on only the "minimum recommended" data
   GPS.sendCommand(PMTK_SET_NMEA_OUTPUT_RMCONLY);
-  // For logging data, we don't suggest using anything but either RMC only or RMC+GGA
-  // to keep the log files at a reasonable size
   // Set the update rate
   GPS.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ);   // 100 millihertz (once every 10 seconds), 1Hz or 5Hz update rate
-
   // Turn off updates on antenna status, if the firmware permits it
   GPS.sendCommand(PGCMD_NOANTENNA);
-
   // the nice thing about this code is you can have a timer0 interrupt go off
   // every 1 millisecond, and read data from the GPS for you. that makes the
   // loop code a heck of a lot easier!
 #ifndef ESP8266 // Not on ESP8266
   useInterrupt(true);
 #endif
-
   Serial.println("Ready!");
 }
-
 
 // Interrupt is called once a millisecond, looks for any new GPS data, and stores it
 #ifndef ESP8266 // Not on ESP8266
@@ -247,13 +227,6 @@ void loop(){
 
   // if a sentence is received, we can check the checksum, parse it...
   if (GPS.newNMEAreceived()) {
-    // a tricky thing here is if we print the NMEA sentence, or data
-    // we end up not listening and catching other sentences!
-    // so be very wary if using OUTPUT_ALLDATA and trying to print out data
-
-    // Don't call lastNMEA more than once between parse calls!  Calling lastNMEA
-    // will clear the received flag and can cause very subtle race conditions if
-    // new data comes in before parse is called again.
     char *stringptr = GPS.lastNMEA();
 
     if (!GPS.parse(stringptr))   // this also sets the newNMEAreceived() flag to false
@@ -266,7 +239,7 @@ void loop(){
       return;
     }
 
-    float voltage = analogRead(TempSenzor) * 3.3;  //očitava vrijednosti izvoda (A0)
+    float voltage = analogRead(TempSenzor) * 3.3;  //ocitava vrijednosti izvoda (A0)
     voltage /= 1024.0; //10bit ADC
     float Temperatura = (voltage - 0.5) * 100;
     Serial.print("Trenutno: ");
@@ -290,22 +263,4 @@ void loop(){
     Serial.println();
 
   }
-  //Stvari za temp sensor
-  /*
-    for (int i = 0; i<10; i++)
-  {
-    float voltage = analogRead(TempSenzor) * 3.3;  //očitava vrijednosti izvoda (A0)
-    voltage /= 1024.0;
-    float Temperatura = (voltage - 0.5) * 100;
-    temp[i] = Temperatura;
-    Serial.print("Trenutno: ");
-    Serial.println(Temperatura);
-    
-    delay(150);
-  }
-  Array_sort(temp, n);
-  median = Find_median(temp, n);
-  Serial.print("Filtrirano: ");
-  Serial.println(median);
-  */
 }
