@@ -93,11 +93,13 @@ Abstract in English\\
 \bibliography{literatura}
 
 %Ako treba dodati kod kao appendix 
-%\newpage
-%\appendix
-%\begin{appendices}\appendix
-%\chapter{Programski kod na Arduino mikroračunalu}
-%\lstinputlisting[language=c++]{../arduinoSource/LoggingWithTemp/LoggingWithTemp.ino}
-%\end{appendices}
+\newpage
+\appendix
+\begin{appendices}\appendix
+\chapter{Programski kod na Arduino mikroračunalu}\label{ArduinoSource}
+\includepdf[fitpaper, pages=-]{../arduinoSource/LoggingWithTemp/arduinoSource.pdf}
+\chapter{Analiza podataka kretanja vozila}\label{AnalizaKretanjaVozila}
+\includepdf[fitpaper, pages=-]{../dataAnalysis/AnalizaKretanjaVozila.pdf}
+\end{appendices}
 
 \end{document}
