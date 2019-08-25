@@ -1,4 +1,11 @@
 \chapter{Prikupljanje podataka - hardware}
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=1\textwidth]{{"../resources/HardwareSetup"}.jpg}
+\caption{Izgled korištenog hardwareskog sklopa}\label{pic:HardwareSetup}
+\end{center}
+\end{figure}
+
 \section{GPS logging shield}
 
 \begin{figure}
@@ -58,10 +65,10 @@ Filter je jednostavna mreža keramičkih kondenzatora vrijednosti $10 pF$ koji s
 Iako je softwareski fiter u nekim situacijama dovoljno dobar ovo jednostavno i jeftino rješenje daje dodatan sloj filtriranja koji za posljedicu ima vrlo glatko očitanje temperature bez skokova u vrijednostima.
 
 Primjenom kombinacije softwareskog i hardwareskog filtriranja postignuta je vrlo zadovoljavajuća karakteristika dobivenih stabilnih vrijednosti bez nerealnih skokova i s vrlo glotkom tranzicijom kod grijanja ili hlađenja sklopa. Dobivene vrijednosti su prikazane na slici \ref{data:FilteredWithCaps}.
-\begin{figure}[!h]
-\includegraphics[angle=90,width=1.1\textwidth]{{"../tempSensor/FilteredWithCaps"}.jpg}
+\begin{figure}[!h]\begin{center}
+\includegraphics[width=0.8\textwidth]{{"../tempSensor/FilteredWithCaps"}.jpg}
 \caption{Vrijednosti senzora primjenom kombinacije Sw i Hw filtera}\label{data:FilteredWithCaps}
-\end{figure}
+\end{center}\end{figure}
 
 \section{Prikupljanje GPS podataka}
 GPS\footnote{Global Positioning System - Sustav globalnog pozicioniranja} je javni sustav u vlasništvu vlade SAD-a\footnote{\url{https://www.gps.gov}} za globoalno pozicioniranje baziran na satelitima s atomskim satovima koji odašilju vrlo točno i precizno trenutno vrijeme te su sinkkronizirani s zemaljskim satovima. 
@@ -98,16 +105,10 @@ Prilikom provjere primljenih podataka obavezno se provjerava
 Provjeru valjanosti i checksuma odrađuje bibloteka koja je dostupna za Arduino platformu zajedno s ostalom dokumentacijom uređaja te nije bilo potrebno pisati poseban kod koji će to raditi.
 
 \section{Spremanje podataka na memorijsku karticu}
-Na korištenom Adafruit Ultimate GPS Logger Shieldu postoji utor za microSD memorisku karticu koja se koristi za zapisivanje prikupljenih podataka kako bi se isti mogli kasnije obraditi i prikazati.
+Na korištenom Adafruit Ultimate GPS Logger Shieldu postoji utor za \mbox{microSD} memorisku karticu koja se koristi za zapisivanje prikupljenih podataka kako bi se isti mogli kasnije obraditi i prikazati.
 Sustav skupljene podatke sprema na memorisku karticu u .csv \footnote{Comma Separated Values} formatu koji je pogodan za kasniju obradu bilo putem Excel programskog alata ili drugih alata za obradu i vizualizaciju podataka.
 Svaki red predstavlja jedan zapis, a u odnosu na ranije prikazanu \$GPRMC rečenicu na kraju je dodan i podatak o trenutnoj temperaturi u $^\circ C$ koja je očitana sa senzora opisanog u poglavlju \ref{sec:TempData}.
 Frekvencija zapisivanja podatka je postavljena na 1 zapis u sekundi.
 Datoteka se automatski kreira prilikom uključivanja sklopa ako je SD kartica prisutna.
-Ime datoteke je GPSLOG\textit{XX}.csv pri čemu je \textit{XX} broj koji počinje od 00 i uvećava je za 1 kod svakog pokretanja. Testiranje je pokazalo da veličina datoteke s 10 sati ($\approx 36000$ zapisa) snimljnih podataka iznosi otprilike 2.7 Mb
-
-
-
-
-
-
- 
+Ime datoteke je GPSLOG\textit{XX}.csv pri čemu je \textit{XX} broj koji počinje od 00 i uvećava je za 1 kod svakog pokretanja. 
+Testiranje je pokazalo da veličina datoteke s 10 sati ($\approx 36000$ zapisa) snimljnih podataka iznosi otprilike 2.7 Mb.
