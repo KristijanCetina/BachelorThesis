@@ -23,7 +23,7 @@
 
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \addto{\captionscroatian}{\renewcommand{\bibname}{Literatura}}
-\setcounter{chapter}{-1}
+%\setcounter{chapter}{-1} % zero-based numbering
 \pagenumbering{Roman}
 
 \newcommand{\kolegij}{Završni rad}
@@ -84,6 +84,7 @@ Abstract in English\\
 
 \pagenumbering{arabic}
 \include{uvod}
+\include{technologyStack}
 \include{DataAcquisitionHardware}
 \include{DataProcessingSoftware}
 \include{zakljucak}
