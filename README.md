@@ -12,4 +12,4 @@ git clone https://github.com/KristijanCetina/BachelorThesis.git [<directory>]
 pri čemu je `[<directory>]` neobavezan parameter - željeno ime projekta.
 
 U suprotnom možete preuzeti cijeli kao .zip datoteku klikom na `Download`
-![Download](/resources/DownloadAsZip.jpg "Download")
+![Download](/resources/DownloadAsZip.JPG "Download")
