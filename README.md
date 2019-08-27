@@ -6,7 +6,7 @@ U ovom radu prestaljen je izrađeni uređaj za snimanje podataka, tehnologija za
 Na sljedećem linku je dostupna [PDF verzija rada](https://github.com/KristijanCetina/BachelorThesis/blob/master/LaTeX/Zavr%C5%A1niRad-KristijanCetina.pdf)
 
 Najlakši način za preuzeti ovaj rad ukoliko koristite git je putem sljedeće naredbe
-```
+``` bash
 git clone https://github.com/KristijanCetina/BachelorThesis.git [<directory>]
 ```
 pri čemu je `[<directory>]` neobavezan parameter - željeno ime projekta.
