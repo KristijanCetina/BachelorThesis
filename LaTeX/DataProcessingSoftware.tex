@@ -1,4 +1,77 @@
 \chapter{Obrada podataka - software}
-U ovom poglavlju biti će opisana softwareska komponenta za obradu i vizualizaciju prikupljenih podataka.
+Kako je već spomenuto u uvodi i opisu korištenih tehnologija analiza podataka izrađena je koristeći Python programski jezik unutar Jupyter Notebook interaktivne bilježnice uz dodatak Numpy biblioteke za numeričku analizu i Matplotlib biblioteke za izradu grafova.
 
-U dodatku \ref{AnalizaKretanjaVozila} prikazana je analiza podataka prikupljenih izrađenim uređajem ugrađenim u vozilo za potrebe testiranja.
+Kao prvi primjer obrade podataka izrađena je analiza kretanja vozila i vizualizirani prikupljeni podaci.
+U dodatku \ref{AnalizaKretanjaVozila} prikazana je kompletna analiza podataka te demonstriran završni proizvod koji može biti dalje distribuiran bilo u printanoj verziji ili preferirano u digitalnom obliku koji onda omogućava daljni njad na istome.
+
+Koristeći razne tipove čelija unutar Jupyter notebooka stvorena je prikazana analiza.
+Tip čelije \textit{Markdown} podržava formatiranje i snitaksu \texttt{.md} Markdown datoteke\footnote{\url{https://www.markdownguide.org/}}, a one se koriste za opsisni dio analize kako bi čitatelj znao o čemu se radi bez potrebe za proučavanjem programskog koda.
+
+Tip čelije \textit{Code} omogućava unošenje i ozvršavanje programskog koda koji će napraviti neku željenu radnju.
+Čelije se ogu izvršavati jedno po jedna ili sve čelije u sekvencijalnom nizu.
+
+Na kraju postoje i \textit{Output} čelije koje prikazuju izlazni rezultat izvšrene \textit{code} čelije.
+
+Kako bi mogli koristiti navedene dodatne module u Python ih je prvo potrebno uvesti
+\begin{lstlisting}[language=Python]
+import pandas as pd
+import matplotlib.pyplot as plt
+from numpy import genfromtxt, arange, sin, pi
+from matplotlib import style
+from matplotlib import dates as mpl_dates
+import numpy as np
+from pandas.plotting import register_matplotlib_converters
+register_matplotlib_converters()
+\end{lstlisting}
+
+Konvencija je da se NumPy biblioteka skrećeno imenuje \texttt{np} kao bi se olakšalo kasnije korištenje u radu.
+Isto vrijedi za ostale često korištene biblioteke.
+
+Nakon toga je potrebno navesti koja datoteka s podacima se koristi i nazvati kolone podataka 
+\begin{lstlisting}[language=Python]
+filename='GPSLOG10.CSV'
+data=pd.read_csv(filename, header=None, delimiter=',',
+names=['Sentence','Time','Validity','Latitue','NS','Longitude','EW',
+'Speed','Direction','Date','NA1','NA2','Checksum','Temperature'])
+\end{lstlisting}
+Pri čemu je \texttt{GPSLOG10.CSV} ime datoteke u kojem su spremljeni podaci.
+
+Nakon uvodnih radnji sada smo spremni započeti s analizom podataka i vizualizcijom onih koje nas zanimaju.
+U ovisnosti o željenim rezultatima ovisiti će i potrebne operacije koje je potrebno poduzeti.
+Nekada su podaci već u takvom formatu da se mogu odmah koristiti, dok je ponekada potrebno napraviti veću ili manju manipulaciju nad njima kako bi bili pgodni za korištenje.
+U svakom slučaju vrlo je bitno poznavati strukturu seta podataka koji se koristi kako bi se izbjegle greške zbog njegovog nepoznavanja ili korištenja krive mjerne jedinice.
+1999. godine NASA je izgubila 125 milijuna vrijedan \textit{Mars Climate Orbiter} zbog previda pretvorbe jedinica\cite{sauser2009projects} što samo pokazuje kako to realna zamka u koji u najbolji svjetski stručnjaci mogu upasti.
+U ovom slučaju brzina je prikazana u čvorovima što odgovara prijeđenom putu od jedne nautičke milje u sat vremena.
+Ukoliko želimo prikazati brzinu u $km/h$ potrebno je izvršiti pretvorbu jedinica.
+Jedna nautička milja iznosi 1852 $m$ što znači da zapisanu brzinu treba pomnožiti s 1.852 kako bi dobili $km/s$.
+
+\begin{figure}[!h]\begin{center}
+\includegraphics[width=1\textwidth]{{"../dataAnalysis/GrafKretanjaBrzineVozila"}.png}
+\caption{Izrađeni graf kretanja vozila}\label{graf:Speed}
+\end{center}\end{figure}
+
+Kako je uvijek korisno vizualizirati kretanje veličine na grafu tako je i u ovom radu napravljen graf promjene brzine u vremenu prikazan na \ref{graf:Speed}.
+Koristeći Matplotlib je to vrlo jednostavno
+\begin{lstlisting}[language=Python]
+plt.plot(data['Time'],data['Speed']*1.852, 'b-')
+\end{lstlisting}
+Pri čemu  \textit{data['Time']} predstavlja apcisu na grafu, a \textit{data['Speed']} predstavlja ordinatu prikazanog grafa.
+\textit{'b-'} je parametar kojim je definirana linija - linija plave boje.
+Svaki graf treba biti propisno obilježen tako su i na ovom grafu označene vrijednsti i imena osi, prikazane mjerne jedinice i dodana legenda iako je prikazana samo jedna veličina.
+
+Dodatno iz dostupnih podataka može se napraviti graf kretanja temperature koji je prikazan u kompletnoj analizi u dodatku \ref{AnalizaKretanjaVozila}.
+Osim podataka koji se mogu prikazati grafički možemo pogledati i ostale statističke podatke kao što su minimalna i maksimalna temperatura tokom promatranog razdoblja.
+\begin{lstlisting}[language=Python]
+print ('Minimalna temperatura: ',np.min(data['Temperature']), 'C')
+print ('Maximalna temperatura: ',np.max(data['Temperature']), 'C')
+\end{lstlisting}
+Ovdje su korištene ugrađene funkcije \texttt{min} i \texttt{max} NumPy biblioteke koje za parametar uzimaju set podataka temperature.
+
+Ako nas zanima prosječna temperatura tomok promatranog razdoblja onda i za to postoji urađena funkcija koja nam olakšava rad umjesto da zbrajamo sve elemente te zbroj djelimo s brojem elemenata jednostavno možemo koristiti
+\begin{lstlisting}[language=Python]
+print ('Prosjecna temperatura: ', '
+{:.2f}'.format(np.mean(data['Temperature'])), 'C ',
+'{:.2f}'.format(np.std(data['Temperature'])), 'C')
+\end{lstlisting}
+Pri čemu \texttt{np.mean} daje prosječnu temperaturu, a \texttt{np.std} daje standardnu devijaciju vrijednosti.
+\texttt{'{:.2f}'.format} na opcija formatiranja stringa pomoću koje se prikazuje dva decimalna mjesta.
