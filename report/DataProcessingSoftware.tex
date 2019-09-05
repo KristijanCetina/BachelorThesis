@@ -1,6 +1,7 @@
 \chapter{Obrada podataka - software}\label{ch:Software}
 Kako je već spomenuto u uvodi i opisu korištenih tehnologija analiza podataka izrađena je koristeći Python programski jezik unutar Jupyter Notebook interaktivne bilježnice uz dodatak Numpy biblioteke za numeričku analizu i Matplotlib biblioteke za izradu grafova.
 
+\section{Prikaz podataka vozila u kretanju}
 Kao prvi primjer obrade podataka izrađena je analiza kretanja vozila i vizualizirani prikupljeni podaci.
 U dodatku \ref{AnalizaKretanjaVozila} prikazana je kompletna analiza podataka te demonstriran završni proizvod koji može biti dalje distribuiran bilo u printanoj verziji ili preferirano u digitalnom obliku koji onda omogućava daljni njad na istome.
 
@@ -75,3 +76,12 @@ print ('Prosjecna temperatura: ', '
 \end{lstlisting}
 Pri čemu \texttt{np.mean} daje prosječnu temperaturu, a \texttt{np.std} daje standardnu devijaciju vrijednosti.
 \texttt{'{:.2f}'.format} na opcija formatiranja stringa pomoću koje se prikazuje dva decimalna mjesta.
+
+\section{Prikaz podataka lifta}
+Analiza prikazana u dodatku \ref{VizualizacijaKretanjaLifta} vizualizira podatke prikupljenim mobilnim telefonom koristeći aplikaciju \textit{phyphox}\footnote{\url{https://www.phyphox.org}}.
+Korišten je modul koji očitava podatke s akcelerometra u sve 3 osi koorinatnog sustava.
+Mobilni uređaj je bio prislonjen na bočni panel lifta i pokušano je da stoj okomito na smjer kretanja sa stražnojm stranom priljubljenim na panel kako bi se dobili čim točniji podaci bez unošenja graške zbog pomaknutih osi mobitela i lifta.
+Izmjerene vrijednosti predstavljaju put od prizemlja do 5. kata zgrade na adresi Koparska 58, Pula.
+
+Podaci su zatim spremljeni u .csv datoteku te ista prenešena na računalo.
+Datoteka je formatirana na način da ima imena vrijednosti u zaglavlju te su korišteni zadani nazivi, a polja su odvojena znakom ";".
