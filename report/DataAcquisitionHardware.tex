@@ -105,7 +105,7 @@ Prilikom provjere primljenih podataka obavezno se provjerava
 Provjeru valjanosti i checksuma odrađuje bibloteka koja je dostupna za Arduino platformu zajedno s ostalom dokumentacijom uređaja te nije bilo potrebno pisati poseban kod koji će to raditi.
 
 \section{Spremanje podataka na memorijsku karticu}
-Na korištenom Adafruit Ultimate GPS Logger Shieldu postoji utor za \mbox{microSD} memorisku karticu koja se koristi za zapisivanje prikupljenih podataka kako bi se isti mogli kasnije obraditi i prikazati.
+Na korištenom Adafruit Ultimate GPS Logger Shieldu postoji utor za microSD memorisku karticu koja se koristi za zapisivanje prikupljenih podataka kako bi se isti mogli kasnije obraditi i prikazati.
 Sustav skupljene podatke sprema na memorisku karticu u .csv \footnote{Comma Separated Values} formatu koji je pogodan za kasniju obradu bilo putem Excel programskog alata ili drugih alata za obradu i vizualizaciju podataka.
 Svaki red predstavlja jedan zapis, a u odnosu na ranije prikazanu \$GPRMC rečenicu na kraju je dodan i podatak o trenutnoj temperaturi u $^\circ C$ koja je očitana sa senzora opisanog u poglavlju \ref{sec:TempData}.
 Frekvencija zapisivanja podatka je postavljena na 1 zapis u sekundi.

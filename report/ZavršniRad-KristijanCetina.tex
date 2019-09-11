@@ -20,6 +20,10 @@
 \usepackage{lipsum}
 %\usepackage{chngcntr}	%Continuous footnote numbering
 %\counterwithout{footnote}{chapter} %Continuous footnote numbering
+\tolerance=1
+\emergencystretch=\maxdimen %poravnavanje
+\hyphenpenalty=10000 % no hyphenation
+\hbadness=10000	
 
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \addto{\captionscroatian}{\renewcommand{\bibname}{Literatura}}
@@ -75,10 +79,10 @@ U duhu otvorenog koda i dobre prakse znanstvene zajednice ovaj rad je napisan ko
 La raccolta, l’elaborazione e la visualizzazione dei dati è presente in ogni aspetto della nostra
 vita.
 In questa tesi è documentata la creazione di uno strumento per la raccolta dati creato su
-piattaforma Arduino, e \mbox{l’elaborazione} dei dati raccolti usando esclusivamente strumenti \textit{Open Source}.
+piattaforma Arduino, e l’elaborazione dei dati raccolti usando esclusivamente strumenti \textit{Open Source}.
 La piattaforma hardware attuale usa un ricevitore GPS ed un sensore di temperatura mentre per future evoluzioni è in programma l’incremento del numero di sensori. 
 I dati raccolti dallo strumento vengono immagazzinati sulla scheda di memoria per poi essere analizzati sul computer.
-Per l’analisi dei dati viene usato il linguaggio di programmazione Python sull' ambiente di \mbox{programmazione} Jupyter notebook, con l’ausilio di biblioteche Pandas, \mbox{NumPy} e Matplotlib.
+Per l’analisi dei dati viene usato il linguaggio di programmazione Python sull' ambiente di programmazione Jupyter notebook, con l’ausilio di biblioteche Pandas, NumPy e Matplotlib.
 Lo strumento qui descritto è compatibile con tutti i sistemi operativi piu popolari oggi in uso.
 
 Nello spirito della filosofia Open Source e della cultura scientifica questa tesi e stata scritta usando il sistema \LaTeX{} ed è disponibile liberamente su GitHub per tutti coloro che fossero interessati a continuare il lavoro fatto su questo tema.
