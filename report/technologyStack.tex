@@ -1,10 +1,10 @@
 \chapter{Opis korištenih tehnologija}\label{technologyStack}
 \section{Slobodan i otvoreni kod}
 Izraz otvoreni kod (\textit{open source}) odnosi se na nešto što ljudi mogu slobodno mijenjati i dijeliti jer je dizajn javno dostupan\cite{WhatIsOpenSource}.
-Izraz je nastao u kontekstu razvoja računalnog softwarea dok se danas odnosi na pristup radu bio on software, hardware ili bilo kakav drugi tip projekta.
-Spomenimo kako postoje razne licence pod kojima se objavljuju open soure radovi, a u praksi se razlikuju u načinu na koji izmjenjeni i izvorni rad mora biti distribuiran svim ostalim zainteresiranim stranama.
+Izraz je nastao u kontekstu razvoja računalnog softwarea dok se danas odnosi na pristup radu bio on software, hardware ili kakav drugi tip projekta.
+Važno je napomenuti kako postoje razne licence pod kojima se objavljuju open soure radovi, a u praksi se razlikuju u načinu na koji izmjenjeni i izvorni rad mora biti distribuiran svim ostalim zainteresiranim stranama.
 
-Razlozi i prednosti primjene open source pristupa projektima su višestruke, a neke od njih su:
+Razlozi i prednosti primjene open source pristupa projektima su višestruke, a neki od njih su:
 \begin{itemize}
 \item Kontorla proizvoda
 \item Učenje i trening
@@ -13,55 +13,55 @@ Razlozi i prednosti primjene open source pristupa projektima su višestruke, a n
 \end{itemize}
 
 \paragraph{Kontrola proizvoda:}
-Kada je izvorni kod i ostala dokumentacija nekog proizvoda otvorena onda se može pogledati kako točno radi taj proizvod i na koji način je izgrađen.
-Na taj način svaki korinik može imati kontrolu nad onime što koristi jer ne postoji koncept crne kutije (\textit{BlackBox concept}) te omogućava korisniku da uz dostupan kod i sheme popravi ili unaprijedi proizvod.
-Zapitajmo se koliko puta smo se osobno susreli sa situacijom kada zbog kvara nekog uređaja smo bili primorani posjetiti i platiti ovlaštenog servisera koji ima specijalni alat za diagnostiku i popravke?
+Kada je izvorni kod i ostala dokumentacija nekog proizvoda otvorena, tada se može pogledati kako točno radi taj proizvod i na koji je način izgrađen.
+Time svaki korisnik može imati kontrolu nad onime što koristi jer ne postoji koncept crne kutije (\textit{BlackBox concept}) što omogućava da uz dostupan kod i sheme popravi ili unaprijedi proizvod.
+Zapitajmo se koliko puta smo se osobno susreli sa situacijom da smo zbog kvara nekog uređaja bili primorani posjetiti i platiti ovlaštenog servisera koji ima specijalni alat za dijagnostiku i popravke?
 
 \paragraph{Učenje i trening:}
-Uvidom u otvorenu dokumentaciju možemo vidjeti kako je neki stručnjak rješio određeni problem te to rješenje u potpunosti ili modificirano može se primjeniti na vlastiti problem.
-Otvorena dokumentacija omogućava proučavanje rješenja određenih problema i na taj način se skračuje vrijeme i pojeftinjuje razvoj novih proizvoda koji imaju slične zahtjeve.
-Znanstvenici objavljuju svoja otkrića kako bi ih drugi iza njih mogli koristiti.
-Inženjeri u svakodnevnom radu ne izvode i dokazuju npr. Ohmov ili Newtonove zakone već ih samo primjenjuju.
+Uvidom u otvorenu dokumentaciju možemo vidjeti kako je neki stručnjak riješio određeni problem te se to rješenje u potpunosti ili modificirano može primjeniti na vlastiti.
+Otvorena dokumentacija omogućava proučavanje rješenja određenih problema skraćujući vrijeme i pojeftinjuje razvoj novih proizvoda koji imaju slične zahtjeve.
+Znanstvenici objavljuju svoja otkrića ne bili ih mogli koristiti.
+Inženjeri u svakodnevnom radu ne izvode i dokazuju npr. Ohmov ili Newtonove zakone, već ih samo primjenjuju.
 
 \paragraph{Sigurnost:}
-Proučavanje objavljene dokumentacije nekog projekta drugi stručnjaci iz područja mogu uvidjeti neke propuste koje autori zbog kompleksnosti proizvoda ili drugih razloga nisu primjetili te dojaviti autorima grešku kao bi se ista mogla ispraviti. 
-Neke greške se mogu pojaviti samo u iznimno malom broju slučaja ili kada se poslože veliki broj faktora te nije realno očekivati da se prilikom testiranja proizvoda simulira svaki mogući scenarij korištenja.
-Zainteresirane strane mogu dodatno testirati proizvod u specifičnim uvjetima i na taj način otkriti inače skrivenu grešku u proizvodu te nakon otklanjanja greške sam proizvod postaje sigurniji.
+Proučavanjem objavljene dokumentacije projekta drugi stručnjaci iz toga područja mogu uvidjeti neke propuste koje autori zbog kompleksnosti proizvoda ili drugih razloga nisu primjetili te dojaviti autorima pogrešku ne bili se ista mogla ispraviti. 
+Neke pogreške mogu se pojaviti u iznimno malom broju slučaja ili kada se posloži veliki broj faktora te nije realno očekivati da se prilikom testiranja proizvoda simulira svaki mogući scenarij korištenja.
+Zainteresirane strane mogu dodatno testirati proizvod u specifičnim uvjetima i na taj način otkriti inače skrivenu pogrešku u proizvodu čijim otklanjanjem proizvod postaje sigurnijim.
 
 \paragraph{Stabilnost:}
-Mnogi proizvodi se koriste za vrlo bitne aspekte rada nekog većeg sustava te njihova zamjena iziskuje velike promjene i investicije, a ponekada nije niti moguća.
-Korištenjem proizvoda otvorenog koda i dokumentacije omogućava se korištenje nastavak podrške i korištenja tog proizvoda i nakon eventualnog nestanka kompanije koja je napravila proizvoda te isti više nije dobaljiv od proizvođača. 
-Ako se koriste open source proizvodi moguće je samostalno rekreirati proizvod ukoliko se ukaže takva potreba.
+Mnogi proizvodi koriste se za vrlo važne aspekte rada nekog većeg sustava te njihova zamjena iziskuje velike promjene i investicije, a ponekada nije niti moguća.
+Korištenjem proizvoda i dokumentacije otvorenog koda omogućava se korištenje uz nastavak podrške kao i njegovo korištenje nakon eventualnog nestanka kompanije koja je napravila proizvoda te isti više nije dobaljiv od proizvođača. 
+Ako se koriste open source proizvodi moguće je, ukoliko se ukaže potreba, samostalno rekreirati proizvod.
 
 
 \section{Arduino platforma}
-Arduino je elektronička platforma otvorenog koda\footnote{\url{https://www.arduino.cc/en/Guide/Introduction}} bazirana na hardwareu i softwareu koji je lako za koristiti.
-Arduino platforma obuhvaća mikrokontrolerske pločice bazirane na AVR arhitekturi s integriranim digitalnim, alalognim ulazima i izlazima kao i PWM\footnote{Pulse Width Modulation - Pulsno širinska modulacija} izlazima.
-Platforma omogućava jednostavno spajanje dodatnih vanjskih uređaja kao što su razni senzori, releji, servo i motori putem dodatnog upravljačkog modula te ostale elektroničke i elektromehaničke komponente.
-Sheme svih mikrokontrolera objavljene pod Creative Commons\footnote{\url{https://creativecommons.org/}} licencom te javno dostupne svim zainteresiranim stranama.
+Arduino je elektronička platforma otvorenog koda\footnote{\url{https://www.arduino.cc/en/Guide/Introduction}} temeljena na hardwareu i softwareu koji je lako za koristiti.
+Arduino platforma obuhvaća mikrokontrolerske pločice temeljene na AVR arhitekturi s integriranim digitalnim, alalognim ulazima i izlazima kao i PWM\footnote{Pulse Width Modulation - Pulsno širinska modulacija} izlazima.
+Platforma omogućuje jednostavno spajanje dodatnih vanjskih uređaja poput raznih senzora, releja, serva i motora putem dodatnih upravljačkih modula te ostale elektroničkih i elektromehaničkih komponenti.
+Sheme svih mikrokontrolera objavljene su pod Creative Commons\footnote{\url{https://creativecommons.org/}} licencom te javno dostupne svim zainteresiranim stranama.
 
-Adruino pločice su relativno povoljne u usporedbi s ostalim platformama i kao takve omogućavaju pristupačnije učenje svim zainteresiranima.
-Potrebno je ponekad malo spretnosti s lemilicom dok se često mogu slagati moduli na prototipnoj pločici bez lemljenja sa izradom spojeva putem spojnih žica.
+Adruino pločice relativno su povoljne u usporedbi s ostalim platformama i kao takve omogućavaju pristupačnije učenje svim zainteresiranima.
+Potrebno je ponekad malo spretnosti s lemilicom, iako se često mogu slagati moduli na prototipnoj pločici bez lemljenja sa izradom spojeva putem spojnih žica.
 
-Jednostavno korisničko sučelje (IDE\footnote{Integrated development environment - Integrirano razvojno okruženje}) za izradu korisničkih programa (\textit{sketch}) je jednostavno za korištenje početnicima dok istovremeno omogućava izradu vrlo kompleksnih programa iskusnim korisnicima. 
+Jednostavno korisničko sučelje (IDE\footnote{Integrated development environment - Integrirano razvojno okruženje}) za izradu korisničkih programa (\textit{sketch}) je jednostavno za korištenje početnicima dok istovremeno iskusnim korisnicima omogućava izradu vrlo kompleksnih programa.
 IDE je kompatibilan s većinom danas raspostranjenih operacijskih sustava (GNU/Linux, MacOS i Windows).
-Programski jezik za izradu programa je baziran na C/C++ te omogućava daljnje proširivanje kroz C++ biblioteke ili koristiti AVR-C programski jezik.
+Programski jezik za izradu programa je temeljen na C/C++ te omogućava daljnje proširivanje kroz C++ biblioteke ili korištenje AVR-C programskog jezika.
 
 \section{Jupyter Notebook}
 U ovom radu za obradu i prikazivanje podataka korišten je programski jezik Python\footnote{\url{https://www.python.org/}} uz dodatke NumPy\footnote{\url{https://numpy.org/}}, Pandas\footnote{\url{https://pandas.pydata.org/}} i Matplotlib\footnote{\url{https://matplotlib.org/}}.
-NumPy i Pandas omogućavaju lakšu manipulaciju podacima dok Matplotlib omogućava izradu kvalitetnih grafova s velikom mogućnošću prilagodbe raznim željama i potrebama.
-Sve zajedno je implementirano kroz sustav \emph{interaktivne bilježnice} Jupyter notebook\footnote{\url{https://jupyter.org/}} koja omogućava brzu i jednostavnu obradu podataka kao i njeno dijeljenje sa svim zainteresiranim stranama.
+NumPy i Pandas omogućuju lakšu manipulaciju podacima dok Matplotlib omogućuje izradu kvalitetnih grafova s velikom mogućnošću prilagodbe raznim željama i potrebama.
+Sve zajedno implementirano je kroz sustav \emph{interaktivne bilježnice} Jupyter notebook\footnote{\url{https://jupyter.org/}} koja omogućuje brzu i jednostavnu obradu podataka kao i njeno dijeljenje sa svim zainteresiranim stranama.
 Jupyter notebook je web aplikacija otvorenog koda koja se može izvršavati na lokalnom računalu ili koristeći resurse računalstva u oblaku.
 Podržava razne programske jezike poput Julia, Ruby, R, C++ i mnoge druge te u ovom radu korišten Python.
-Jupyter notebook omogućava kreiranje i djeljenje dokumenata koji sadržavaju izvršivi programski kod, jednadžbe, grafove i vizualizacije te popratni tekst u jednoj cijelini koju trenutno drugim načinima nije moguće ili je vrlo kompleksno za postići.
+Jupyter notebook omogućuje kreiranje i dijeljenje dokumenata koji sadrže izvršivi programski kod, jednadžbe, grafove i vizualizacije te popratni tekst u jednoj cijelini koju trenutno drugim načinima nije moguće ili je vrlo kompleksno za postići.
 Područja primjene su najčešće obrada i transformacija podataka, numeričke analize, statistički modeli, vizualizacija podataka, strojno učenje i još mnogo toga.
 
-Alati tipa Excel gdje korištene formule su skrivene iza podataka u ćelijama te se greške lako podkradu i još lakše ostanu nezamječene. 
-Istraživanja su pokazala značaju količinu grešaka u Excel proračunskim tablicama koje su u dnevnoj upotrebi diljem organizacija, od kojih neke su imale i značajne negativne financijke implikacije\cite{panko1998we}. 
-Iako je istraživenje starijeg datuma jedan od glavnih razloga grešaka (skrivene formule) je i dalje prisutan te je realno za očekivati kako se greške i dalje događaju, a sa sve većom upotrebom proračunskih tablica za očekivati je kako broj istih s greškama raste.
+U alatima tipa Excel, gdje su korištene formule skrivene iza podataka u ćelijama te se greške lako podkradu i još lakše ostanu nezamječene. 
+Istraživanja su pokazala značajnu količinu grešaka u Excel proračunskim tablicama koje su u dnevnoj uporabi diljem organizacija, od kojih neke su imale i značajne negativne financijke implikacije\cite{panko1998we}. 
+Iako je istraživenje starijeg datuma jedan od glavnih razloga pogrešaka (skrivene formule) je i dalje prisutan te je realno za očekivati kako se pogreške i dalje događaju, a sve većom uporabom proračunskih tablica za očekivati je kako broj istih s greškama raste.
 
-Primjenom interaktivnih alata poput Jupyter notebooka koji imaju vidljivo prikazane formule koje koriste za proračun i kod za manipulaciju podataka lakše se mogu uočiti greške unutar istih te se mogu ispraviti.
-Primjenom metodologije testiranja koja je poznata u industriji razvoja softwarea greške se mogu dodatno smanjiti.
+Primjenom interaktivnih alata poput Jupyter notebooka koji imaju vidljivo prikazane formule koje koriste za proračun i kod za manipulaciju podataka, lakše se mogu uočiti pogreške unutar istih te se mogu ispraviti.
+Primjenom metodologije testiranja koja je poznata u industriji razvoja softwarea, pogreške se mogu dodatno smanjiti.
 Jedan od poznatijih projekata analize velike količine podataka je zasigurno detekcija gravitacijskih  valova nastalih spajanjem dvaju crnih rupa koristeći LIGO teleskop (\textit{Laser Interferometer Gravitational-Wave Observatory})\footnote{\url{https://www.gw-openscience.org/tutorials/}}
 
 \section{NumPy}
@@ -73,29 +73,29 @@ Između ostalih funkcija sadrži
 \item korisne alate za algebarske operacije, Fourierovu analizu i ostale numeričke mogućnosti
 \end{itemize}
 
-Osim što značajno olakšava numeričku i statističku analizu skupa podataka NumPy zbog svoje strukture i reprezentacije polja podataka omogućava značajno poboljšanje performansi obrade podataka.
-Kako bi demonstrirali razliku u performansama između čistog Pythona i NumPy biblioteke možemo napraviti jednostavan eksperiment koji se sastoji od sumiranja elemenata u polju veličine $10^6$ elemenata i mjeriti vrijeme potrebno za izvršavanje tog zadatka.
+Osim što značajno olakšava numeričku i statističku analizu skupa podataka, NumPy zbog svoje strukture i reprezentacije polja podataka omogućava značajno poboljšanje performansi obrade podataka.
+Kako bi demonstrirali razliku u performansama između čistog Pythona i NumPy biblioteke možemo napraviti jednostavan eksperiment koji se sastoji od sumiranja elemenata u polju veličine $10^6$ elemenata i mjeriti vrijeme potrebnog za izvršenje zadatka.
 
 \begin{figure}[!h]\begin{center}
 \includegraphics[width=1\textwidth]{{"../resources/npSpeedTest"}.png}
 \caption{Usporedba performanski Pythona i NumPy biblioteke}\label{data:npSpeedTest}
 \end{center}\end{figure}
 Na slici \ref{data:npSpeedTest} prikazana je razlika u brzini izvršavaja operacija sumiranja zadanog polja elemenata.
-Vrijeme potrebno za sumiranje elemenata koristeći samo Python iznosi $26.8 ms \pm 750 \mu s$ dok koristeći NumPy vrijeme za isti zadatak iznosi samo $403\mu s \pm 2.46\mu s$\footnote{Rezultati mogu varirati u zavisnosti o korišenom računalu}.
-Vidljiva je značajna razlika u potrebnom vremenu za izvršavanje zadatka, a iskustva industrije\cite{van2011numpy} pokazuju još veću razliku kod kompleksnijih zadataka.
+Vrijeme potrebno za sumiranje elemenata koristeći samo Python iznosi $26.8 ms \pm 750 \mu s$ dok koristeći NumPy vrijeme za isti zadatak iznosi $403\mu s \pm 2.46\mu s$\footnote{Rezultati mogu varirati u zavisnosti o korišenom računalu}.
+Vidljiva je značajna razlika u potrebnom vremenu za izvršenje zadatka, a iskustva industrije\cite{van2011numpy} pokazuju još veću razliku pri kompleksnijim zadatcima.
 
 \section{Git}
-Git\footnote{\href{https://git-scm.com/}{https://git-scm.com/}} je distribuirani sustav za verzioniranje koda i ostalog rada kojeg želimo djeliti sa suradnicima.
-Git sa svojim jednostavnim i brzim granama omogućava lakši razvoj proizvoda kao i ispitivanje mogućnosti i funkcija.
-Kada se želi ispitati neka funkcionalnost bez da se ugrozi ono što do sada radi kako trebe nema potrebe kopirati cijeli projekt u novi folder i onda u njemu testirati već se jednostavno kreira nova grana u kojoj se radi razvoj i kada smo sigurni da sve radi kako želimo onda se ta grana ujedini s glavnom granom projekta koja prihvati dodatne funkcionalnosti razvijene za proizvod.
-Kako je Git lagan za resurse onda se može kreirati vrlo veliki broj grana za razne potrebe bez značajnog utjecaja na performanse razvojnog računala ili potrošnje spremišnog prostora.
+Git\footnote{\href{https://git-scm.com/}{https://git-scm.com/}} je distribuirani sustav za verzioniranje koda i ostalog rada kojeg želimo dijeliti sa suradnicima.
+Git svojim jednostavnim i brzim granama omogućuje lakši razvoj proizvoda kao i ispitivanje mogućnosti i funkcija.
+Kada se želi ispitati neka funkcionalnost bez ugrožavanja dosadašnjeg rada nema potrebe kopirati cijeli projekt u novi folder i onda u njemu testirati već se jednostavno kreira nova grana u kojoj se radi razvoj i kada smo sigurni da sve radi kako želimo onda se ta grana ujedini s glavnom granom projekta koja prihvati dodatne funkcionalnosti razvijene za proizvod.
+Kako je Git lagan za resurse može se kreirati vrlo veliki broj grana za razne potrebe bez značajnog utjecaja na performanse razvojnog računala ili potrošnje spremišnog prostora.
 
-S obzirom na distibuiranu narav Gita svaki suradnik koji radi na projektu ima svoju kopiju na kojoj radi te nije vezan za neki server i stalnu komunikaciju s ostatkom tima već je ista potrebna samo kada se povlače i šalju učinjene promjene.
+S obzirom na distibuiranu narav Gita, svaki suradnik koji radi na projektu ima svoju kopiju na kojoj radi te nije vezan za neki server i stalnu komunikaciju s ostatkom tima, već je ista potrebna samo kada se povlače i šalju učinjene promjene.
 
-Git je nastao 2005 godine za potrebe razvoja Linux jezgre i od tada je poprimio mnoge simpatije unutar inženjerske zajednice koja ga koristi kako bi zajednički razvija projekte.
+Git je nastao 2005 godine za potrebe razvoja Linux jezgre i od tada je poprimio mnoge simpatije unutar inženjerske zajednice koja ga koristi kako bi zajednički razvijala projekte.
 
-Kako bi se olakšalo djeljenje i suradnja na projektima 2008. godine je pokrenut GitHub - centralno mjesto za usluge poslužitelja\footnote{\href{https://github.com/features}{https://github.com/features}} (\textit{hosting}) putem kojeg je moguće pratiti životni ciklus i povijet projekta.
-Svatko može pronaći projekt koji ga zanima te ukoliko ima dovoljno vremena i znanja može i pridonjeti njegovom razvoju.
-Brojne kompanije koriste GitHub kao bi podjelile svoje projekte. Podatak od travnja 2019. godine kaže kako više od 2.1 miljuna kompanija i organizacija koristi GitHub.
-Jedna od njih je i Adafruit - kompanija koja proizvodi elektroničke dodatke za Arduino i druge platforme i fokusirana je na edukacija mladih (i onih koji se tako osjećaju), a njihov GitHub sadrži više od 1100 repozitorija\footnote{\href{https://github.com/adafruit}{https://github.com/adafruit/}}.
-Upravo je njihov GPS Logger Shield korišten u ovom projektu, a dostupnost dokumentacije i dostupna podrška je jedan od glavnih razloga zašto je odlučeno koristiti upravo taj proizvod.
+Kako bi se olakšalo dijeljenje i suradnja na projektima, 2008. godine je pokrenut GitHub - centralno mjesto za usluge poslužitelja\footnote{\href{https://github.com/features}{https://github.com/features}} (\textit{hosting}) putem kojeg je moguće pratiti životni ciklus i povijest projekta.
+Svatko može pronaći projekt koji ga zanima te, ukoliko ima dovoljno vremena i znanja, može pridonjeti njegovom razvoju.
+Brojne kompanije koriste GitHub kako bi podjelile svoje projekte. Podatak od travnja 2019. godine kaže kako više od 2.1 miljuna kompanija i organizacija koristi GitHub.
+Jedna od njih je i Adafruit - kompanija koja proizvodi elektroničke dodatke za Arduino i druge platforme i fokusirana je na edukaciju posebice mladih (i onih koji se tako osjećaju), a njihov GitHub sadrži više od 1100 repozitorija\footnote{\href{https://github.com/adafruit}{https://github.com/adafruit/}}.
+Upravo je njihov GPS Logger Shield korišten u ovom projektu, a dostupnost dokumentacije i podrška jedan je od glavnih razloga zašto je odlučeno korištenje upravo ovog proizvoda.

@@ -1,27 +1,27 @@
 \chapter{Uvod i opis zadatka}\label{OpisIOgranicenja}
-Tema iz ovog rada nastala je iz autorove želje za proučavanjem tematike te kao gorljivi poklonik medote učenja kroz praktičan rad i primjenu stečenog znanja i iskustva na rješavanje realnog problema nastao je ovaj rad.
-Dodatno, autorova želja je implementirati stečena znanja i razvijeni hardware i software u budućim projektima koje ima na umu.
-Koristeči dostupna i otvorena znanja značajno je lakše razvijati potrebne projekte, a otvarajući rad ostalim zainteresiranom stranama omogućava se kolaboracija na usavršavanju projekta ili stvaranju baze za druge, kompeksnije projekte.
+Tema ovog rada proizašla je iz autorove želje za proučavanjem tematike te kao gorljivim poklonikom metode učenja kroz praktičan rad i primjenu stečenog znanja i iskustva na rješavanje realnog problema.
+Dodatno, autorova je želja implementirati stečena znanja i razvijeni hardware i software u budućim projektima koje ima na umu.
+Koristeći dostupna i otvorena znanja značajno je lakše razvijati projekte, a otvarajući rad ostalim zainteresiranom stranama, omogućava se kolaboracija na usavršavanju projekta ili stvaranju baze za druge, kompeksnije projekte.
 
-Arduino platforma je odabrana za korištenje u hardwareskom djelu rada jer ista predstavlja relativno jednostavan i povoljan pristup te uz veliki izbor dodatnih gotovih pločica za proširivanje mogućnosti (\textit{shields}) s otvorenom dokumentacijom logičan je izbor.
+Arduino platforma odabrana je za korištenje u hardwareskom djelu rada jer ista predstavlja relativno jednostavan i povoljan pristup te uz veliki izbor dodatnih gotovih pločica za proširivanje mogućnosti (\textit{shields}) s otvorenom dokumentacijom logičan je izbor.
 
 Na softwareskoj strani izbor je pao na programski jezik Python te dodatne biblioteke Matplotlib i NumPy koje su isto tako otvorenog koda i besplatne za korištenje i dovoljno jednostavne za učenje.
-Dodajmo na to popularnost među akademskom i znanstvenom zajednicom isti se nameću kao logičan izbor.
+Dodajmo tome popularnost među akademskom i znanstvenom zajednicom isti se nameću kao logičan izbor.
 
 \section{Opis i definicija problema}
 Pri proučavanju bilo kojeg inženjerskog ili znanstvenog problema potrebno je prikupiti dovoljnu količinu podataka te iste analizirati i na reprezentativan način prikazati u pokušaju razumjevanja problema.
-GPS je glogalno dostupan sustav putem kojeg se mogu prikupiti dovoljno precizni podaci za civilnu primjenu te je format podataka standardiziran te se zbog toga mogu koristiti i standardne metode analize podataka.
-Ovisno o promatranom problemu potrebni su razni dodatni podaci koje pružaju razni senzori.
+GPS je globalno dostupan sustav putem kojim se mogu prikupiti dovoljno precizni podaci za civilnu primjenu te je format podataka standardiziran čime je omogućeno korištenje i standardnih metoda analize podataka.
+Ovisno o promatranom problemu, potrebni su razni dodatni podatci koje pružaju razni senzori.
 Temperatura je jedan o njih te je u ovom radu korišten klasični TMP36 temperaturni senzor i obrađeni podaci koji su skupljeni putem navedenog senzora.
 
 \section{Cilj i svrha rada}
-Cilj ovog rada je bio izraditi jednostavan snimač podataka (\textit{datalogger}) koji će spremati GPS podatke zajedno s podacima prikupljenim sa instaliranih senzora za kasniju analizu.
-Izrađeni uređaj je namjenjen kao snimač podataka u kompleksnijem sklopu koji se može koristiti kada god postoji potreba za loggiranje podataka.
-Uređaj je namjenjen da zadovolji široki spektar potreba koje se mogu javiti bilo u industriji npr. prilikom praćenja pošiljki ili pak prilikom skupljanja podataka u istraživačke svrhe kako bi se razumio širi problem.
+Cilj ovog rada bio je izraditi jednostavni snimač podataka (\textit{datalogger}) koji će spremati GPS podatke zajedno s podatcima prikupljenima s instaliranih senzora za kasniju analizu.
+Izrađeni uređaj namjenjen je kao snimač podataka u kompleksnijem sklopu koji se može koristiti kad god postoji potreba za loggiranje podataka.
+Uređaj je namijenjen zadovoljavanju širokog spektra potreba koje se mogu javiti bilo u industriji npr. prilikom praćenja pošiljki ili prilikom skupljanja podataka u istraživačke svrhe kako bi se razumio širi problem.
 
-Sklop je baziran na Arduino platformi koja omogućava lak razvoj prototipova uz široku dostupnost gotovih dodatnih modula (\textit{shields}) koji se jednostavno spajaju na bazno mikroračunalo.
+Sklop je temeljen na Arduino platformi koja omogućava lak razvoj prototipova uz široku dostupnost gotovih dodatnih modula (\textit{shields}) koji se jednostavno spajaju na bazno mikroračunalo.
 
-Prikpljeni podaci se spremaju na SD karticu na uređaju u datoteku za kasniju obradu i analazu.
+Prikupljeni podatci spremaju se na SD karticu uređaja u datoteku za kasniju obradu i analazu.
 Prikupljeni podaci se uz pomoć programskog jezika Python i dodatnih modula za statističku i numeričku analizu kao što su Pandas i Matplotlib obrađuju kroz sučelje interaktivne bilježnice Jupyter Notebook.
 Pristup obrade putem interaktivne bilježnice uz korištenje raznih tipova čelija kao što su \textit{Code Cells, Markdown Cells i Raw Cells} omogućava lakšu vizualizaciju i pregled samog rada koji je pogodan za kasnije dijeljenje svim zainteresiranim stranama koji žele pregledati ili nastaviti rad na analizi.
 
@@ -29,22 +29,22 @@ Pristup obrade putem interaktivne bilježnice uz korištenje raznih tipova čeli
 Hipoteza ovog rada je da primjena pristupa otvorenog i slobodnog koda (računanog koda, metode obrade podataka, algoritama i shema hardwareskog sklopa) omogućava izradu funkcionalnog sustav uz prihvatljive troškove i skromne resurse.
 
 \section{Metode rada}
-Tijekom izrade ovog rada korištene su različite znanstveno-istraživačke metode od kojih je svaka najprikladnija postavljenom izazovu, a one su:
+Tijekom izrade ovoga rada korištene su različite znanstveno-istraživačke metode od kojih je svaka najprikladnija postavljenom izazovu, a one su:
 \begin{itemize}
 \item Istraživačka metoda – za stjecanje uvida u zadane okvire zadatka
 \item Metoda logičke analize i sinteze – za prikupljanje podataka iz literature
-\item Deskriptivna metoda – za izradu uvodnog i završnog djela projektnog zadatka
+\item Deskriptivna metoda – za izradu uvodnog i završnog dijela projektnog zadatka
 \item Eksperimentalna metoda - u potrazi za optimalnim rješenjima za zadani dio problema
 \end{itemize}
 
 \section{Struktura rada}
-Struktura ovog rada podjeljena je u logičke cjeline.
-Nakon uvoda i objašanjenja rada u poglavlju \ref{technologyStack} opisana je korišten pristup i primjenjene tehnologije kao i dano objašnjenje zašto je ista upotrebljena.
+Struktura ovoga rada podjeljena je u logičke cjeline.
+Nakon uvoda i objašnjavanja rada, u poglavlju \ref{technologyStack} opisan je korišten pristup i primjenjene tehnologije kao i dano objašnjenje zašto je ista upotrebljena.
 
-U poglavlju \ref{ch:Hardware} opisan je izrađen hardwareski elektronički sklop korišten za prikupljanje obrađenih podataka.
+U poglavlju \ref{ch:Hardware} opisan je izrađeni hardwareski elektronički sklop korišten za prikupljanje obrađenih podataka.
 U dodatku \ref{ArduinoSource} priložen je izvorni kod koji se izvršava na Arduino mikroračunalu.
 
 Poglavlje \ref{ch:Software} opisuje postupak izrade analize prikupljenih podataka.
-Kompletna analiza se nalazi u dodatku \ref{AnalizaKretanjaVozila}
+Kompletna analiza nalazi se u dodatku \ref{AnalizaKretanjaVozila}.
 
 Kompletan Git repozitorij ovog rada javno je dostupan na \url{https://github.com/KristijanCetina/BachelorThesis}
