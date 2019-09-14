@@ -1,1 +1,0 @@
-"sent","time","validity","lat","NS","lon","EW","speed","bearing","date","na1","na2","checksum","temp"
