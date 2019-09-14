@@ -72,16 +72,15 @@ Primjenom kombinacije softwareskog i hardwareskog filtriranja postignuta je vrlo
 \end{center}\end{figure}
 
 \section{Prikupljanje GPS podataka}
-GPS\footnote{Global Positioning System - Sustav globalnog pozicioniranja} je javni sustav u vlasništvu vlade SAD-a\footnote{\url{https://www.gps.gov}} za globoalno pozicioniranje baziran na satelitima s atomskim satovima koji odašilju vrlo točno i precizno trenutno vrijeme te su sinkkronizirani s zemaljskim satovima. 
+GPS\footnote{Global Positioning System - Sustav globalnog pozicioniranja} je javni sustav u vlasništvu vlade SAD-a\footnote{\url{https://www.gps.gov}} koji služi globalnom pozicioniranju temeljen na satelitima s atomskim satovima koji odašilju vrlo točno i precizno trenutno vrijeme te su sinkronizirani sa zemaljskim satovima. 
 Bilo kakva odstupanja se korigiraju na dnevnoj bazi.
-Prijemnik prima signal sa satelita te izračunava točnu poziciju baziranu na poznatoj poziciji satelita i razlikama u primljenim vremenima od svakog satelita.
+Prijemnik prima signal satelita te izračunava točnu poziciju temeljenu na poznatoj poziciji satelita i razlikama u primljenim vremenima od svakog satelita.
 Minimalno su potrebna 3 satelita za dobiti koordinate i 4 satelita za dobiti poziciju o nadmorskoj visini prijemnika.
 
 U ovom radu korišten je GPS chip MTK3339\footnote{\url{https://cdn-shop.adafruit.com/datasheets/GlobalTop-FGPMMOPA6C-Datasheet-V0A-Preliminary.pdf}} integriran na prije spomenuti Adafruit Ultimate GPS Logger Shield.
 
-
 Kao koristan izlaz prijemnik daje NMEA\footnote{\url{https://www.nmea.org/content/STANDARDS/NMEA_0183_Standard}} rečenicu. 
-Ovisno o potrebnim podacima mogu se koristiti razne rečenice, a u ovoj primjeni je korištena \$GPRMC\footnote{\url{http://aprs.gids.nl/nmea/}} koja daje minimalne potrebne podatke, a među kojima su vrijeme (UTC) i datum, pozicija i brzina.
+Ovisno o potrebnim podatcima, mogu se koristiti razne rečenice, a u ovoj primjeni korištena je \$GPRMC\footnote{\url{http://aprs.gids.nl/nmea/}} koja daje minimalne potrebne podatke, a među kojima su vrijeme (UTC) i datum, trenutna pozicija i brzina.
 Primjer \$GPRMC rečenice je \begin{verbatim}
 $GPRMC,053005.000,A,4457.8784,N,01356.1351,E,36.41,124.90,310719,,,A*58
 \end{verbatim}
@@ -100,16 +99,16 @@ pri čemu je:
 \end{tabbing} 
 Prilikom provjere primljenih podataka obavezno se provjerava
 \begin{itemize}
-\item da li primljni checksum odgovara izračunanom za datu rečenicu kako bi se izbjegle pogreške u komunikaciji,
-\item da li je oznaka valjanosti \textit{A} što znači da uređaj ima prijem s dovoljnog broj satelita da se može vjerovati primljenim podacima.
+\item da li primljeni checksum odgovara izračunanom za datu rečenicu kako bi se izbjegle pogreške u komunikaciji,
+\item je li oznaka valjanosti \textit{A} što znači da uređaj ima prijem s dovoljnog broj satelita da se primljenim podatcima može vjerovati.
 \end{itemize}
-Provjeru valjanosti i checksuma odrađuje bibloteka koja je dostupna za Arduino platformu zajedno s ostalom dokumentacijom uređaja te nije bilo potrebno pisati poseban kod koji će to raditi.
+Provjeru valjanosti i checksuma vrši biblioteka dostupna za Arduino platformu zajedno s ostalom dokumentacijom uređaja te nije bilo potrebno pisati poseban kod koji će to raditi.
 
 \section{Spremanje podataka na memorijsku karticu}
-Na korištenom Adafruit Ultimate GPS Logger Shieldu postoji utor za microSD memorisku karticu koja se koristi za zapisivanje prikupljenih podataka kako bi se isti mogli kasnije obraditi i prikazati.
-Sustav skupljene podatke sprema na memorisku karticu u .csv \footnote{Comma Separated Values} formatu koji je pogodan za kasniju obradu bilo putem Excel programskog alata ili drugih alata za obradu i vizualizaciju podataka.
-Svaki red predstavlja jedan zapis, a u odnosu na ranije prikazanu \$GPRMC rečenicu na kraju je dodan i podatak o trenutnoj temperaturi u $^\circ C$ koja je očitana sa senzora opisanog u poglavlju \ref{sec:TempData}.
+Na korištenom Adafruit Ultimate GPS Logger Shieldu postoji utor za microSD memorijsku karticu koja se koristi za zapisivanje prikupljenih podataka kako bi se isti mogli kasnije obraditi i prikazati.
+Sustav skupljene podatke sprema na memorijsku karticu u .csv \footnote{Comma Separated Values} formatu pogodnim za kasniju obradu putem Excel programskog alata ili drugih alata za obradu i vizualizaciju podataka.
+Svaki red predstavlja jedan zapis, a u odnosu na ranije prikazanu \$GPRMC rečenicu, na kraju je dodan i podatak o trenutnoj temperaturi u $^\circ C$ koja je očitana sa senzora opisanog u poglavlju \ref{sec:TempData}.
 Frekvencija zapisivanja podatka je postavljena na 1 zapis u sekundi.
 Datoteka se automatski kreira prilikom uključivanja sklopa ako je SD kartica prisutna.
 Ime datoteke je GPSLOG\textit{XX}.csv pri čemu je \textit{XX} broj koji počinje od 00 i uvećava je za 1 kod svakog pokretanja. 
-Testiranje je pokazalo da veličina datoteke s 10 sati ($\approx 36000$ zapisa) snimljnih podataka iznosi otprilike 2.7 Mb.
+Testiranje je pokazalo da veličina datoteke s 10 sati ($\approx 36000$ zapisa) snimljenih podataka iznosi otprilike 2.7 Mb.
