@@ -17,7 +17,6 @@
 \pgfplotsset{compat=1.15}
 \usepackage{listings}
 \usepackage{appendix}
-\usepackage{lipsum}
 %\usepackage{chngcntr}	%Continuous footnote numbering
 %\counterwithout{footnote}{chapter} %Continuous footnote numbering
 \tolerance=1
@@ -42,78 +41,30 @@ Kristijan Cetina \\{\small JMBAG: 2424011721} \\ {\href{mailto:kristijan.cetina@
 \begin{document}
 \pgfplotsset{width=\textwidth,compat=newest}
 
-\begin{titlepage}
-\clearpage
-\begin{center}
-\begin{Large}
-ISTARSKO VELEUČILIŠTE\\
-UNIVERSIT\`{A} ISTRIANA DI SCIENZE APPLICATE\\
-Stručni studij politehnike\end{Large}
-\end{center}
-\vspace{3cm}
-{\let\newpage\relax\maketitle}
-\thispagestyle{empty}
+%\begin{titlepage}
+%\clearpage
+%\begin{center}
+%\begin{Large}
+%ISTARSKO VELEUČILIŠTE\\
+%UNIVERSIT\`{A} ISTRIANA DI SCIENZE APPLICATE\\
+%Stručni studij politehnike\end{Large}
+%\end{center}
+%\vspace{3cm}
+%{\let\newpage\relax\maketitle}
+%\thispagestyle{empty}
 
-\begin{abstract}
-Prikupljanje, obrada i vizualizacija podataka nalazi se na svakom koraku našega života.
-U ovom radu prikazan je postupak izrade snimača podataka koristeči Arduino platformu te obrada podataka koristeći iskljućivo alate otvorenog i slobodnog koda.
-Hardwareska platforma trenutno koristi GPS prijemnik i temperaturni senzor te se u budućnosti planira povećanje broja senzora.
-Podatci koji se skupljaju na uređaju spremaju se lokalno na memorijsku karticu ne bi li se kasnije analizirali na računalu pri čemu se koristi programski jezik Python unutar Jupyter notebook okruženja uz pomoć Pandas, NumPy i Matplotlib biblioteka.
-Izrađeni alat za analizu radi na svim popularnim operacijskim sustavima danas u upotrebi.
+%\end{titlepage}
 
-U duhu otvorenog koda i dobre prakse znanstvene zajednice ovaj rad je napisan koristeći \LaTeX{} sustav te je kompletan rad \textit{hostan} na GitHub-u i slobodano dostupan svim zainteresiranim stranama koji žele nastaviti rad na ovoj temi.
-
-\paragraph{Ključne riječi} \textit{Arduino, Python, Matplotlib, \textit{open-source}, obrada podataka}
-\vspace{3cm}
-
-\begin{tabbing}
-\hspace{60pt}\=\kill
- Kolegij: \> Elektronika\\
- Mentorica: \> Sanja Grbac Babić, mag. računarstva, v.predavač
-\end{tabbing} 
-\end{abstract}
-
-\begin{otherlanguage}{italian} 
-\begin{abstract}
-La raccolta, l’elaborazione e la visualizzazione dei dati è presente in ogni aspetto della nostra
-vita.
-In questa tesi è documentata la creazione di uno strumento per la raccolta dati creato su
-piattaforma Arduino, e l’elaborazione dei dati raccolti usando esclusivamente strumenti \textit{Open Source}.
-La piattaforma hardware attuale usa un ricevitore GPS ed un sensore di temperatura mentre per future evoluzioni è in programma l’incremento del numero di sensori. 
-I dati raccolti dallo strumento vengono immagazzinati sulla scheda di memoria per poi essere analizzati sul computer.
-Per l’analisi dei dati viene usato il linguaggio di programmazione Python sull' ambiente di programmazione Jupyter notebook, con l’ausilio di biblioteche Pandas, NumPy e Matplotlib.
-Lo strumento qui descritto è compatibile con tutti i sistemi operativi piu popolari oggi in uso.
-
-Nello spirito della filosofia Open Source e della cultura scientifica questa tesi e stata scritta usando il sistema \LaTeX{} ed è disponibile liberamente su GitHub per tutti coloro che fossero interessati a continuare il lavoro fatto su questo tema.
-
-\paragraph{Parole chiave:} \textit{Arduino, Python, Matplotlib, \textit{open-source}, analisi dati}
-\end{abstract}
-\end{otherlanguage}
-
-\begin{otherlanguage}{english} 
-\begin{abstract}
-Data acquisition, processing, and visualization are at every step of our lives.
-This paper describes how to record data using an Arduino and analyze them using free and open-source (FOSS) tools exclusively.
-The hardware platform is currently using a GPS receiver and a temperature sensor with the planned increase in the number of sensors in the future.
-The data collected on the devices is stored locally to a memory card and subsequently analyzed on a computer.
-The Python programming language within the Jupyter notebook environment was used for analysis with the help of the Pandas, NumPy and Matplotlib libraries.
-The created analysis tool works on all today popular operating systems.
-
-In the spirit of the open-source and good practice of the scientific community, this paper was written using the \LaTeX{} system and a complete project is hosted on GitHub freely available to all interested parties who wish to work on these topic.
-
-\paragraph{Keywords:} \textit{Arduino, Python, Matplotlib, \textit{open-source}, data analysis}
-\end{abstract}
-\end{otherlanguage}
-
-\end{titlepage}
-
+\includepdf[pages={1-},fitpaper]{pocetne_stranice.pdf}
+\setcounter{page}{1}
 \include{posveta}
 \include{zahvala}
 \include{izjava}
+\include{sazeci}
+\include{popisOznaka}
 
 \tableofcontents
 %\listoftables	%ako ih ima puno prebaci na kraj dokumenta
-\listoffigures	%ako ih ima puno prebaci na kraj dokumenta
 \newpage
 
 \pagenumbering{arabic}
@@ -126,8 +77,9 @@ In the spirit of the open-source and good practice of the scientific community, 
 \nocite{*}
 \addcontentsline{toc}{chapter}{Literatura}
 \bibliography{literatura}
+\listoffigures
+\addcontentsline{toc}{chapter}{Popis slika}
 
-%Ako treba dodati kod kao appendix 
 \newpage
 \appendix
 \begin{appendices}\appendix
