@@ -5,34 +5,39 @@
 \caption{Izgled korištenog hardwareskog sklopa}\label{pic:HardwareSetup}
 \end{center}
 \end{figure}
+Na slici \ref{pic:HardwareSetup} prikazan je zgotovljeni hardwareski sklop korišten u ovom radu.
+Ispod GPS prijemnika s utorom za microSD karticu i prototipnim područjem nalazi se Arduino UNO mikrokontroler.
+Za bolji prijem signala korištena je GPS antena, a za spajanje se koristi adapterski kabel (\textit{pigtail}).
+Dodatno se može vidjeti temperaturni senzor TMP36 zajedno s filter kondenzatorima.
+
 U prilogu \ref{ArduinoSource} prikazan je cjeloviti izvorni kod koji se izvšvana na Arduino mikrokontroleru.
 
 \section{GPS logging shield}
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.7\textwidth]{{"../tempSensor/TMP36_schematic"}.jpg}
-\caption{Shema spoja TMP36 senzora}\label{shema:TMP36}
-\end{center}
-\end{figure}
 
 \begin{figure}
 \includegraphics[angle=90,width=1.1\textwidth]{{"../Adafruit-GPS-Logger-Shield-PCB/Adafruit GPS Logger Shield"}.pdf}
 \caption{Shema Adafruit GPS Logger Shield}\label{shema:AdafruitLoggerShield}
 \end{figure}
 
-Na shemi \ref{shema:AdafruitLoggerShield} nalazi se shema gotovog elektroničkog sklopa kako dolazi iz tvornice\footnote{Kompletna dokumentacija dostupna je na \url{https://learn.adafruit.com/adafruit-ultimate-gps-logger-shield?view=all}}\footnote{GitHub repozitorij korištene verzije dostupan na \url{https://github.com/adafruit/Adafruit-GPS-Logger-Shield-PCB}}.
-Na samoj tiskanoj pločici postoji takozvano prototipno područje za dodavanje vanjskih elemanata čiji je raster 2.54 mm koji odgovara standardu \textit{true-hole} elemenata.
+Na shemi \ref{shema:AdafruitLoggerShield} nalazi se shema gotovog elektroničkog sklopa kako dolazi iz tvornice\footnote{Kompletna dokumentacija dostupna je na \url{https://learn.adafruit.com/adafruit-ultimate-gps-logger-shield?view=all}}$^,$\footnote{GitHub repozitorij korištene verzije dostupan na \url{https://github.com/adafruit/Adafruit-GPS-Logger-Shield-PCB}}.
+Na samoj tiskanoj pločici postoji takozvano prototipno područje za dodavanje vanjskih elemanata čiji je raster 2.54 mm koji odgovara standardu \textit{through-hole} elemenata.
 Na to područje je dodan temperaturni senzor TMP36\footnote{Datasheet dostupan na \url{https://github.com/KristijanCetina/BachelorThesis/blob/master/resources/TMP35_36_37.pdf}}\label{ftn:TMP36Datasheet} zajedno s dodatnim pasivnim elementima koji služe kao filter smetnji koje se javljaju u radu zbog okoline.
 Shema spoja je prikazana na slici \ref{shema:TMP36}.
 
 \section{Prikupljanje podataka o temperaturi}\label{sec:TempData}
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{{"../tempSensor/TMP36_schematic"}.jpg}
+\caption{Shema spoja TMP36 senzora}\label{shema:TMP36}
+\end{center}
+\end{figure}
 Kako svaki elektronički sklop ima definirani raspon radne temperature važno je znati u kojim se uvjetima isti nalazi.
 Ukoliko je temperatura previsoka, može se uključiti aktivno hlađenje, ili, ako se unaprijed zna da će se sklop nalaziti pod povišenom radnom temperaturom tada se može konstrurati adekvatan sustav hlađenja.
 Isto vrijedi za prenisku temperaturu.
 Prema ranije spomenutoj shemi \ref{shema:TMP36}, dodan je temperaturni senzor koji mjeri radnu temperaturu okoline uređaja.
-Pri testiranju, ova vrsta senzora pokazala se veoma pouzdana, uz minimalno samozagrijavanje koje bi utjecalo na točnost mjerene veličine, ali je isto tako pokazala vrlo brze promjene izlazne vrijednosti koja može imati uzrok u vanjskim smetnjama.
-Kako bi se otklonio taj problem primjenjena su dva rješenja.
-Prvi je hardwareski fiter - kondenzatori koji si prikazani na shemi \ref{shema:TMP36}, a drugi je softwareski fiter.
+Pri testiranju, ova vrsta senzora pokazala se veoma pouzdanom, uz minimalno samozagrijavanje koje bi utjecalo na točnost mjerene veličine, ali je isto tako pokazala vrlo brze promjene izlazne vrijednosti koja može imati uzrok u vanjskim smetnjama.
+Kako bi se otklonio taj problem primijenjena su dva rješenja.
+Prvi je hardwareski filter - kondenzatori koji si prikazani na shemi \ref{shema:TMP36}, a drugi je softwareski filter.
 Tvornički podatci o izlaznom naponu šuma mogu se pronaći u datasheetu uređaja, slika 20.
 Na slici \ref{data:RawWithOutCaps} prikazane su izlazne vrijednosti senzora bez ikakvog filtriranja i obrade.
 Frekvencija uzorkovanja je 10Hz (10 očitanja u sekundi)
@@ -47,7 +52,7 @@ Vrijednosti se čitaju svakih 100 ms te uz računanje na bazi 10 vrijednosti daj
 Prilikom testiranja utvrđeno je da veći broj uzoraka ne doprinosti kvaliteti izmjerenih vrijednosti, dok se pri manjem broju uzoraka može se potkrasti poneka nerealna vrijenosti.
 Kako je očekivano vrijeme promjene temperature značajno duže od 1 sekunde onda su prihvaćene navedene vrijednosti i metoda filtriranja.
 Na slici \ref{data:FilteredWithOutCaps} prikazane su izlazne vrijednosti senzora nakon primjene opisanog softwareskog filtera.
-Primjeti se značajno manje skokova od nečega što se može smatrati stvarnom vrijendosti. 
+Primijeti se značajno manje skokova od nečega što se može smatrati stvarnom vrijednosti. 
 
 \begin{figure}[!h]
 \begin{minipage}{0.49\linewidth}
@@ -63,7 +68,7 @@ Primjeti se značajno manje skokova od nečega što se može smatrati stvarnom v
 
 \subsection{Hardwareski filter}
 Filter je jednostavna mreža keramičkih kondenzatora vrijednosti $10 pF$ koji su spojeni što bliže senzoru između izvoda za napajanje i izlaza senzora prema točki nultog potencijala (\textit{GND, masa}) kako bi apsorbirali eventualne smetnje.
-Iako je softwareski fiter u nekim situacijama dovoljno dobar, ovo jednostavno i jeftino rješenje daje dodatni sloj filtriranja koji za posljedicu ima vrlo glatko očitanje temperature bez skokova u vrijednostima.
+Iako je softwareski filter u nekim situacijama dovoljno dobar, ovo jednostavno i jeftino rješenje daje dodatni sloj filtriranja koji za posljedicu ima vrlo glatko očitanje temperature bez skokova u vrijednostima.
 
 Primjenom kombinacije softwareskog i hardwareskog filtriranja postignuta je vrlo zadovoljavajuća karakteristika dobivenih stabilnih vrijednosti bez nerealnih skokova i s vrlo glatkom tranzicijom kod grijanja ili hlađenja sklopa. Dobivene vrijednosti prikazane su na slici \ref{data:FilteredWithCaps}.
 \begin{figure}[!h]\begin{center}
@@ -75,7 +80,7 @@ Primjenom kombinacije softwareskog i hardwareskog filtriranja postignuta je vrlo
 GPS\footnote{Global Positioning System - Sustav globalnog pozicioniranja} je javni sustav u vlasništvu vlade SAD-a\footnote{\url{https://www.gps.gov}} koji služi globalnom pozicioniranju temeljen na satelitima s atomskim satovima koji odašilju vrlo točno i precizno trenutno vrijeme te su sinkronizirani sa zemaljskim satovima. 
 Bilo kakva odstupanja se korigiraju na dnevnoj bazi.
 Prijemnik prima signal satelita te izračunava točnu poziciju temeljenu na poznatoj poziciji satelita i razlikama u primljenim vremenima od svakog satelita.
-Minimalno su potrebna 3 satelita za dobiti koordinate i 4 satelita za dobiti poziciju o nadmorskoj visini prijemnika.
+Minimalno su potrebna 3 satelita za dobivanje koordinata i 4 satelita za dobiti pozicija o nadmorskoj visini prijemnika.
 
 U ovom radu korišten je GPS chip MTK3339\footnote{\url{https://cdn-shop.adafruit.com/datasheets/GlobalTop-FGPMMOPA6C-Datasheet-V0A-Preliminary.pdf}} integriran na prije spomenuti Adafruit Ultimate GPS Logger Shield.
 
@@ -106,7 +111,7 @@ Provjeru valjanosti i checksuma vrši biblioteka dostupna za Arduino platformu z
 
 \section{Spremanje podataka na memorijsku karticu}
 Na korištenom Adafruit Ultimate GPS Logger Shieldu postoji utor za microSD memorijsku karticu koja se koristi za zapisivanje prikupljenih podataka kako bi se isti mogli kasnije obraditi i prikazati.
-Sustav skupljene podatke sprema na memorijsku karticu u .csv \footnote{Comma Separated Values} formatu pogodnim za kasniju obradu putem Excel programskog alata ili drugih alata za obradu i vizualizaciju podataka.
+Sustav prikupljene podatke sprema na memorijsku karticu u .csv \footnote{Comma Separated Values} formatu pogodnim za kasniju obradu putem Excel programskog alata ili drugih alata za obradu i vizualizaciju podataka.
 Svaki red predstavlja jedan zapis, a u odnosu na ranije prikazanu \$GPRMC rečenicu, na kraju je dodan i podatak o trenutnoj temperaturi u $^\circ C$ koja je očitana sa senzora opisanog u poglavlju \ref{sec:TempData}.
 Frekvencija zapisivanja podatka je postavljena na 1 zapis u sekundi.
 Datoteka se automatski kreira prilikom uključivanja sklopa ako je SD kartica prisutna.

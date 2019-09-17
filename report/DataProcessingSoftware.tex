@@ -11,7 +11,7 @@ Tip čelije \textit{Markdown} podržava formatiranje i sintaksu \texttt{.md} Mar
 Tip ćelije \textit{Code} omogućuje unošenje i izvršavanje programskoga koda koji će napraviti neku željenu radnju.
 Ćelije se mogu izvršavati jedno po jedna ili sve u sekvencijalnom nizu.
 
-Na kraju postoje i \textit{Output} ćelije koje prikazuju izlazni rezultat izvšene \textit{code} ćelije.
+Na kraju postoje i \textit{Output} ćelije koje prikazuju izlazni rezultat izvršene \textit{code} ćelije.
 
 Kako bi mogli koristiti navedene dodatne module u Python prvo ih je potrebno uvesti
 \begin{lstlisting}[language=Python]
@@ -28,7 +28,7 @@ register_matplotlib_converters()
 Konvencija je da se NumPy biblioteka skrećeno imenuje \texttt{np} kako bi se olakšalo kasnije korištenje u radu.
 Isto vrijedi i za ostale često korištene biblioteke.
 
-Nakon toga potrebno je navesti koja se datoteka s podatcima koristi i nazvati kolone podataka 
+Nakon toga potrebno je navesti koja se datoteka s podatcima koristi i nazvati stupce podataka 
 \begin{lstlisting}[language=Python]
 filename='GPSLOG10.CSV'
 data=pd.read_csv(filename, header=None, delimiter=',',
@@ -39,7 +39,7 @@ Pri čemu je \texttt{GPSLOG10.CSV} ime datoteke u kojem su spremljeni podatci.
 
 Nakon uvodnih radnji, spremni smo započeti s analizom podataka i vizualizcijom onih koje nas zanimaju.
 U ovisnosti o željenim rezultatima ovisit će i potrebne operacije koje je potrebno poduzeti.
-Po nekad su podatci već u takvom formatu da se mogu odmah koristiti, dok je ponekada potrebno napraviti veću ili manju manipulaciju nad njima kako bi bili pogodni za korištenje.
+Ponekad su podatci već u takvom formatu da se mogu odmah koristiti, dok je ponekada potrebno napraviti veću ili manju manipulaciju nad njima kako bi bili pogodni za korištenje.
 U svakom slučaju, vrlo je važno poznavati strukturu seta podataka koji se koristi kako bi se izbjegle pogreške zbog njegovog nepoznavanja ili korištenja krive mjerne jedinice.
 Godine 1999., NASA je izgubila 125 milijuna vrijedan \textit{Mars Climate Orbiter} zbog previda pretvorbe jedinica\cite{sauser2009projects} što samo pokazuje koliko je to realna zamka u koju i najbolji svjetski stručnjaci mogu upasti.
 U ovom slučaju, brzina je prikazana u čvorovima što odgovara prijeđenom putu od jedne nautičke milje u sat vremena.
@@ -67,20 +67,20 @@ print ('Maximalna temperatura: ',np.max(data['Temperature']), 'C')
 \end{lstlisting}
 Ovdje su korištene ugrađene funkcije \texttt{min} i \texttt{max} NumPy biblioteke koje za parametar uzimaju set podataka temperature.
 
-Zanima li nas prosječna temperatura tokom promatranog razdoblja, tada i za to postoji urađena funkcija koja nam olakšava rad.
-Umjesto da zbrajamo sve elemente te zbroj djelimo s brojem elemenata, jednostavno možemo koristiti
+Zanima li nas prosječna temperatura tijekom promatranog razdoblja, tada i za to postoji funkcija koja nam olakšava rad.
+Umjesto da zbrajamo sve elemente te zbroj dijelimo s brojem elemenata, jednostavno možemo koristiti
 \begin{lstlisting}[language=Python]
 print ('Prosjecna temperatura: ', '
 {:.2f}'.format(np.mean(data['Temperature'])), 'C ',
 '{:.2f}'.format(np.std(data['Temperature'])), 'C')
 \end{lstlisting}
 Pri čemu \texttt{np.mean} daje prosječnu temperaturu, a \texttt{np.std} daje standardnu devijaciju vrijednosti.
-\texttt{'{:.2f}'.format} na opcija formatiranja stringa pomoću koje se prikazuje dva decimalna mjesta.
+\texttt{'{:.2f}'.format} je opcija formatiranja stringa pomoću koje se prikazuje dva decimalna mjesta.
 
 \section{Prikaz podataka lifta}
 Analiza prikazana u dodatku \ref{VizualizacijaKretanjaLifta} vizualizira podatke prikupljene mobilnim telefonom koristeći aplikaciju \textit{phyphox}\footnote{\url{https://www.phyphox.org}}.
 Korišten je modul koji očitava podatke s akcelerometra u sve 3 osi koordinatnog sustava.
-Mobilni uređaj bio je prislonjen na bočni panel lifta i pokušano je postaviti ga da stoj okomito na smjer kretanja sa stražnojm stranom priljubljenim na panel kako bi se dobili čim točniji podatci bez unošenja pogreške zbog pomaknutih osi mobitela i lifta.
+Mobilni uređaj bio je prislonjen na bočni panel lifta i pokušano je postaviti ga da stoj okomito na smjer kretanja sa stražnjom stranom priljubljenim na panel kako bi se dobili čim točniji podatci bez unošenja pogreške zbog pomaknutih osi mobitela i lifta.
 Izmjerene vrijednosti predstavljaju put od prizemlja do 5. kata zgrade na adresi Koparska 58, Pula.
 
 Podatci su zatim spremljeni u .csv datoteku te je ista prenesena na računalo.
