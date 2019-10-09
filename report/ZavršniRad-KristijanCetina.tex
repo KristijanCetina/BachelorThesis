@@ -1,0 +1,94 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english, italian, croatian]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage {tikz}
+\usepackage{pgfplots}
+\usetikzlibrary {positioning}
+\usepackage{tocloft}
+\usepackage[hidelinks]{hyperref}
+\usepackage[section]{placeins}
+\usepackage[final]{pdfpages}
+\bibliographystyle{ieeetr}%ieeetr, abbrv
+\pgfplotsset{compat=1.15}
+\usepackage{listings}
+\usepackage{appendix}
+%\usepackage{chngcntr}	%Continuous footnote numbering
+%\counterwithout{footnote}{chapter} %Continuous footnote numbering
+\tolerance=1
+\emergencystretch=\maxdimen %poravnavanje
+\hyphenpenalty=10000 % no hyphenation
+\hbadness=10000	
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\addto{\captionscroatian}{\renewcommand{\bibname}{Literatura}}
+%\setcounter{chapter}{-1} % zero-based numbering
+\pagenumbering{Roman}
+
+\newcommand{\kolegij}{Završni rad}
+\newcommand{\naslovRada}{Izrada snimača podataka, obrada i vizualizacija prikupljenih podataka bazirana na principima slobodnog i otvorenog koda \\ {\large Završni rad}} 
+\newcommand{\mailFriendlynaslovRada}{BachelorThesis - FOSS Datalogger}
+
+\author{
+Kristijan Cetina \\{\small JMBAG: 2424011721} \\ {\href{mailto:kristijan.cetina@gmail.com?subject=\mailFriendlynaslovRada}{{\footnotesize kcetina@iv.hr}}}} 
+\title{\naslovRada}
+\date{Pula, \today}
+
+\begin{document}
+\pgfplotsset{width=\textwidth,compat=newest}
+
+%\begin{titlepage}
+%\clearpage
+%\begin{center}
+%\begin{Large}
+%ISTARSKO VELEUČILIŠTE\\
+%UNIVERSIT\`{A} ISTRIANA DI SCIENZE APPLICATE\\
+%Stručni studij politehnike\end{Large}
+%\end{center}
+%\vspace{3cm}
+%{\let\newpage\relax\maketitle}
+%\thispagestyle{empty}
+
+%\end{titlepage}
+
+\includepdf[pages={1-},fitpaper]{pocetne_stranice.pdf}
+\setcounter{page}{1}
+\include{posveta}
+\include{zahvala}
+\include{izjava}
+\include{sazeci}
+\include{popisOznaka}
+
+\tableofcontents
+%\listoftables	%ako ih ima puno prebaci na kraj dokumenta
+\newpage
+
+\pagenumbering{arabic}
+\include{uvod}
+\include{technologyStack}
+\include{DataAcquisitionHardware}
+\include{DataProcessingSoftware}
+\include{zakljucak}
+
+\nocite{*}
+\addcontentsline{toc}{chapter}{Literatura}
+\bibliography{literatura}
+\listoffigures
+\addcontentsline{toc}{chapter}{Popis slika}
+
+\newpage
+\appendix
+\begin{appendices}\appendix
+\chapter{Programski kod na Arduino mikroračunalu}\label{ArduinoSource}
+\includepdf[fitpaper, pages=-]{../arduinoSource/LoggingWithTemp/arduinoSource.pdf}
+\chapter{Analiza podataka kretanja vozila}\label{AnalizaKretanjaVozila}
+\includepdf[fitpaper, pages=-]{../dataAnalysis/AnalizaKretanjaVozila.pdf}
+\chapter{Vizualizacija podataka kretanja lifta}\label{VizualizacijaKretanjaLifta}
+\includepdf[fitpaper, pages=-]{../dataAnalysis/KretanjeLifta.pdf}
+\end{appendices}
+
+\end{document}
